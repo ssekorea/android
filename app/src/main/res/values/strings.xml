@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Sseproject</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="male">남</string>
+    <string name="female">여</string>
+    <string name="birthday">생년월일</string>
+    <string name="password_check">비밀번호 확인</string>
+    <string name="password_input">비밀번호 입력</string>
+    <string name="id">아이디</string>
+    <string name="register">회원가입</string>
+    <string name="login">로그인</string>
+    <string name="password">비밀번호</string>
+    <string name="login_kakao">카카오톡 으로 로그인</string>
+    <string name="login_facebook">페이스북 로그인</string>
+    <string name="phone_number">휴대폰 번호</string>
+    <string name="join">가입하기</string>
+    <string name="doAuth">인증하기</string>
+    <string name="disease_check_explain">해당 병력 사항에 모두 체크해주세요</string>
+    <string name="heartDisease">심장병</string>
+    <string name="cancer">암</string>
+    <string name="hypertension">고혈압</string>
+    <string name="diabetes">당뇨병</string>
+    <string name="arthritis">관절염</string>
+    <string name="dementia">인지장애(치매)</string>
+    <string name="etc">기타</string>
+    <string name="privacyInfoManagement"><u>개인정보 처리 방침</u></string>
+    <string name="termOfService"><u>서비스 이용약관</u></string>
+</resources>
