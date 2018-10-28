@@ -12,4 +12,11 @@
     <color name="main_bright">#5BE7B3</color>
     <color name="main_superdark">#AAB0B2</color>
     <color name="transparent">#00FFFFFF</color>
+
+    <color name="red_dark">#F06423</color>
+    <color name="red_dark2">#D85A1B</color>
+
+    <color name="cyan">#b5e3e7</color>
+    <color name="gray">#6b6b6b</color>
+    <color name="main_gray">#AAB0B2</color>
 </resources>

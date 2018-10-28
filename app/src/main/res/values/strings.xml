@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Sseproject</string>
-
+    <string name="facebook_app_id">259535554762907</string>
+    <string name="kakako_app_key">d32e7d1fc99c6c2cb329abe3f8cd3ea2</string>
+    <string name="fb_login_protocol_scheme">fb259535554762907</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="male">남</string>
