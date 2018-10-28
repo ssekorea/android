@@ -7,6 +7,14 @@ public class User {
     String id;
     @SerializedName("pw")
     String pw;
+    @SerializedName("jwt")
+    String jwtToken;
+    @SerializedName("access_token")
+    String accessToken;
+    @SerializedName("join_type")
+    String joinType;
+    @SerializedName("user_type")
+    String userType;
     public enum LoggedInMode {
 
         LOGGED_IN_MODE_LOGGED_OUT(0),

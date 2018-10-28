@@ -10,7 +10,6 @@ public class AppUserRepository implements UserRepository {
 
     @Inject
     public AppUserRepository(PreferencesHelper helper){
-        currentUser = new User();
         this.helper = helper;
     }
 

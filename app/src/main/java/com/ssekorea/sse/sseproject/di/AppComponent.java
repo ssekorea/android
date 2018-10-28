@@ -14,6 +14,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
 @Singleton
 @Component(modules = {AndroidSupportInjectionModule.class, ActivityBindingModule.class, AppModule.class})
 public interface AppComponent extends AndroidInjector<SseApp> {
+
     @Component.Builder
     interface Builder {
         @BindsInstance

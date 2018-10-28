@@ -14,15 +14,19 @@
  *  limitations under the License
  */
 
-package com.ssekorea.sse.sseproject.di;
+package com.ssekorea.sse.sseproject.util.rx;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
+import io.reactivex.Scheduler;
 
-import javax.inject.Qualifier;
+/**
+ * Created by amitshekhar on 07/07/17.
+ */
 
-@Qualifier
-@Retention(RetentionPolicy.RUNTIME)
-public @interface PreferenceInfo {
+public interface SchedulerProvider {
 
+    Scheduler computation();
+
+    Scheduler io();
+
+    Scheduler ui();
 }

@@ -13,6 +13,9 @@ import com.facebook.login.LoginResult;
 import org.json.JSONObject;
 
 import io.reactivex.Observable;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.Subject;
 
@@ -39,7 +42,8 @@ public class FacebookLoginCallback implements FacebookCallback<LoginResult> {
     }
 
     public Observable<Response> getObservable(){
-        return status;
+        return status.observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io());
     }
 
     public void requestMe(AccessToken token) {

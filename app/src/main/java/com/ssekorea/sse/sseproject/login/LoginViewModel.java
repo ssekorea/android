@@ -1,15 +1,16 @@
 package com.ssekorea.sse.sseproject.login;
 
-import android.arch.lifecycle.ViewModel;
+import com.ssekorea.sse.sseproject.base.BaseViewModel;
+import com.ssekorea.sse.sseproject.util.rx.SchedulerProvider;
 
-import com.facebook.login.LoginManager;
+import org.json.JSONObject;
 
-import java.util.Arrays;
+public class LoginViewModel extends BaseViewModel<LoginNavigator> {
+    public LoginViewModel(SchedulerProvider mSchedulerProvider) {
+        super(mSchedulerProvider);
+    }
 
-public class LoginViewModel extends ViewModel {
-    void loginWithFacebook(){
-
-
-//        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
+    public void LoginWithFacebook(JSONObject fbJsonData){
+        getNavigator().makeTestToast(fbJsonData.toString());
     }
 }
