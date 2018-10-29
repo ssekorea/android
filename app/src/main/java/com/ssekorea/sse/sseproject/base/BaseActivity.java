@@ -14,6 +14,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+
 import com.ssekorea.sse.sseproject.util.UIUtil;
 
 import dagger.android.AndroidInjection;
@@ -23,9 +24,13 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
     private ProgressDialog mProgressDialog;
     private T mViewDataBinding;
     private V mViewModel;
-    public abstract V getViewModel();
     public abstract int getBindingVariable();
-    public abstract @LayoutRes int getLayoutId();
+
+    public abstract
+    @LayoutRes
+    int getLayoutId();
+
+    public abstract V getViewModel();
 
     public T getViewDataBinding() {
         return mViewDataBinding;
@@ -81,7 +86,7 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
 
     private void performDataBinding() {
         mViewDataBinding = DataBindingUtil.setContentView(this, getLayoutId());
-        this.mViewModel = mViewModel == null ? getViewModel() : mViewModel;
+        this.mViewModel = getViewModel();
         mViewDataBinding.setVariable(getBindingVariable(), mViewModel);
         mViewDataBinding.executePendingBindings();
     }

@@ -13,4 +13,12 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
     public void LoginWithFacebook(JSONObject fbJsonData){
         getNavigator().makeTestToast(fbJsonData.toString());
     }
+
+    public void FalseFunction(){
+        setIsLoading(false);
+    }
+
+    public void TrueFunction(){
+        setIsLoading(true);
+    }
 }

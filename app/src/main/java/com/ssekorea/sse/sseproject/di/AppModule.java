@@ -20,19 +20,16 @@ import dagger.Provides;
 public class AppModule {
 
     @Provides
-    @Singleton
     Context providesContext(Application application){
         return application;
     }
 
     @Provides
-    @Singleton
     UserRepository providesUserRepository(PreferencesHelper preferencesHelper){
         return new AppUserRepository(preferencesHelper);
     }
 
     @Provides
-    @Singleton
     PreferencesHelper providePreferenceHelper(Context context, @PreferenceInfo String prefInfo){
         return new AppPreferencesHelper(context,prefInfo);
     }

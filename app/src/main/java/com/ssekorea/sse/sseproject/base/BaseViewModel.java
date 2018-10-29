@@ -1,5 +1,6 @@
 package com.ssekorea.sse.sseproject.base;
 
+
 import android.arch.lifecycle.ViewModel;
 import android.databinding.ObservableBoolean;
 
@@ -13,7 +14,7 @@ public abstract class BaseViewModel<N> extends ViewModel {
 
     private final SchedulerProvider mSchedulerProvider;
 
-    private ObservableBoolean mIsLoading = new ObservableBoolean(false);
+    private final ObservableBoolean mIsLoading=new ObservableBoolean(false);
 
     private CompositeDisposable mCompositeDisposable;
 
