@@ -4,8 +4,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.widget.Toast;
 
 import com.ssekorea.sse.sseproject.R;
+import com.ssekorea.sse.sseproject.SseApp;
 
 public final class UIUtil {
     private UIUtil(){
@@ -23,5 +25,12 @@ public final class UIUtil {
         progressDialog.setCancelable(false);
         progressDialog.setCanceledOnTouchOutside(false);
         return progressDialog;
+    }
+
+    public static void showToast(String message){
+        showToast(message,Toast.LENGTH_SHORT);
+    }
+    public static void showToast(String message,int length){
+        Toast.makeText(SseApp.getAppContext(), message, length).show();
     }
 }

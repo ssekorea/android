@@ -27,6 +27,7 @@ public class FacebookLoginCallback implements FacebookCallback<LoginResult> {
     }
     @Override
     public void onSuccess(LoginResult loginResult) {
+
         status.onNext(new Response(Status.GET_TOKEN,loginResult));
         requestMe(loginResult.getAccessToken());
     }

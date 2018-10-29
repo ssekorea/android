@@ -16,11 +16,23 @@ public class LoginRequest {
     }
 
     public static class FacebookLoginRequest {
+        private String token;
+        private String id;
 
+        public FacebookLoginRequest(String id, String token){
+            this.id = id;
+            this.token = token;
+        }
     }
 
 
     public static class KakaoLoginRequest {
+        private String token;
+        private String id;
 
+        public KakaoLoginRequest(String id, String token){
+            this.id = id;
+            this.token = token;
+        }
     }
 }

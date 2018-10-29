@@ -4,6 +4,8 @@ import com.ssekorea.sse.sseproject.login.LoginActivity;
 import com.ssekorea.sse.sseproject.login.LoginActivityModule;
 import com.ssekorea.sse.sseproject.main.MainActivity;
 import com.ssekorea.sse.sseproject.main.MainActivityModule;
+import com.ssekorea.sse.sseproject.register.BasicRegisterActivity;
+import com.ssekorea.sse.sseproject.register.BasicRegisterActivityModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -17,5 +19,7 @@ public abstract class ActivityBindingModule {
     @ContributesAndroidInjector(modules = LoginActivityModule.class)
     abstract LoginActivity loginActivity();
 
+    @ContributesAndroidInjector(modules = BasicRegisterActivityModule.class)
+    abstract BasicRegisterActivity basicRegisterActivity();
 
 }

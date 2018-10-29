@@ -5,6 +5,8 @@ import android.arch.lifecycle.ViewModelProvider;
 import com.facebook.CallbackManager;
 import com.facebook.login.LoginManager;
 import com.ssekorea.sse.sseproject.ViewModelProviderFactory;
+import com.ssekorea.sse.sseproject.data.remote.ApiHelper;
+import com.ssekorea.sse.sseproject.domain.user.UserRepository;
 import com.ssekorea.sse.sseproject.util.rx.SchedulerProvider;
 
 import dagger.Module;
@@ -32,10 +34,9 @@ public class LoginActivityModule {
         return new ViewModelProviderFactory<>(loginViewModel);
     }
 
-
     @Provides
-    LoginViewModel provideLoginViewModel(SchedulerProvider schedulerProvider){
-        return new LoginViewModel(schedulerProvider);
+    LoginViewModel provideLoginViewModel(SchedulerProvider schedulerProvider, ApiHelper apiHelper, UserRepository userRepository){
+        return new LoginViewModel(schedulerProvider,apiHelper,userRepository);
     }
 
 }

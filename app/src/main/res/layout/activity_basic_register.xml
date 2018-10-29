@@ -1,297 +1,350 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context=".register.BasicRegisterActivity">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.ssekorea.sse.sseproject.register.BasicRegisterViewModel" />
+    </data>
+
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/basicRegister_topMenu"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/main">
-
-        <ImageButton
-            android:id="@+id/basicRegister_back"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@color/transparent"
-            android:src="@drawable/left_arrow"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="@string/register"
-            android:textColor="@color/white"
-            android:textSize="17dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/basicRegister_back"
-            app:layout_constraintTop_toTopOf="parent" />
-    </android.support.constraint.ConstraintLayout>
-
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/basicRegister_register"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/basicRegister_topMenu">
+        android:layout_height="match_parent">
 
         <android.support.constraint.ConstraintLayout
+            android:id="@+id/basicRegister_topMenu"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="50dp"
+            android:background="@color/main">
 
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/basicRegister_edtId"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:hint="@string/id"
-                android:inputType="text"
+            <ImageButton
+                android:id="@+id/basicRegister_back"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/transparent"
+                android:src="@drawable/left_arrow"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:met_floatingLabel="highlight"
-                app:met_maxCharacters="15"
-                app:met_primaryColor="@color/main" />
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/basicRegister_edtpw"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:hint="@string/password_input"
-                android:inputType="textPassword"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/basicRegister_edtId"
-                app:met_floatingLabel="highlight"
-                app:met_helperText="8글자 이상"
-                app:met_maxCharacters="20"
-                app:met_primaryColor="@color/main" />
-
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/basicRegister_edtpw2"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:hint="@string/password_check"
-                android:inputType="textPassword"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/basicRegister_edtpw"
-                app:met_floatingLabel="highlight"
-                app:met_maxCharacters="20"
-                app:met_primaryColor="@color/main" />
-
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/basicRegister_edtBirthday"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:hint="@string/birthday"
-                android:inputType="text"
-                android:textColor="@color/black"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/basicRegister_edtpw2"
-                app:met_floatingLabel="highlight"
-                app:met_helperText="ex)19960407"
-                app:met_maxCharacters="8"
-                app:met_primaryColor="@color/main" />
-
-            <LinearLayout
-                android:id="@+id/basicRegister_genderWrapper"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/basicRegister_edtBirthday">
+                android:layout_marginLeft="10dp"
+                android:text="@string/register"
+                android:textColor="@color/white"
+                android:textSize="17dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/basicRegister_back"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
 
-                <Button
-                    android:id="@+id/basicRegister_btnMale"
-                    android:layout_width="130dp"
-                    android:layout_height="40dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/round_rect_gray"
-                    android:text="@string/male" />
 
-                <Button
-                    android:id="@+id/basicRegister_btnFemale"
-                    android:layout_width="130dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="20dp"
-                    android:background="@drawable/round_rect_gray"
-                    android:text="@string/female" />
-            </LinearLayout>
-
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/basicRegister_edtPhoneNumber"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="@string/phone_number"
-                android:inputType="number"
-                android:textColor="@color/black"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/basicRegister_btnAuth"
-                app:layout_constraintTop_toBottomOf="@id/basicRegister_genderWrapper"
-                app:met_helperText="-제외 숫자만 입력"
-                app:met_primaryColor="@color/main" />
-
-            <Button
-                android:id="@+id/basicRegister_btnAuth"
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:background="@drawable/round_rect_gray"
-                android:text="@string/doAuth"
-                app:layout_constraintBottom_toBottomOf="@id/basicRegister_edtPhoneNumber"
-                app:layout_constraintLeft_toRightOf="@id/basicRegister_edtPhoneNumber"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/basicRegister_edtPhoneNumber"
-
-                />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/basicRegister_register"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/basicRegister_topMenu">
 
             <android.support.constraint.ConstraintLayout
-                android:id="@+id/basicRegister_diseaseWrapper"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/basicRegister_edtPhoneNumber">
-
-                <TextView
-                    android:id="@+id/basicRegister_tvDisease"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/disease_check_explain"
-                    android:textColor="@color/black"
-                    android:textSize="13dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <CheckBox
-                    android:id="@+id/basicRegister_cbHeartDisease"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:text="@string/heartDisease"
-                    app:layout_constraintTop_toBottomOf="@id/basicRegister_tvDisease" />
-
-                <CheckBox
-                    android:id="@+id/basicRegister_cbCancer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/cancer"
-                    app:layout_constraintTop_toBottomOf="@id/basicRegister_cbHeartDisease" />
-
-                <CheckBox
-                    android:id="@+id/basicRegister_cbHypertension"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/hypertension"
-                    app:layout_constraintTop_toBottomOf="@id/basicRegister_cbCancer" />
-
-                <CheckBox
-                    android:id="@+id/basicRegister_cbDiabetes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/diabetes"
-                    app:layout_constraintTop_toBottomOf="@id/basicRegister_cbHypertension" />
-
-                <CheckBox
-                    android:id="@+id/basicRegister_cbArthritis"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/arthritis"
-                    app:layout_constraintTop_toBottomOf="@id/basicRegister_cbDiabetes" />
-
-                <CheckBox
-                    android:id="@+id/basicRegister_cbDementia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/dementia"
-                    app:layout_constraintTop_toBottomOf="@id/basicRegister_cbArthritis" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <com.rengwuxian.materialedittext.MaterialEditText
-                    android:id="@+id/basicRegister_edtEtcDisease"
-                    android:layout_width="180dp"
+                    android:id="@+id/basicRegister_edtId"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:hint="@string/etc"
+                    android:layout_marginTop="50dp"
+                    android:hint="@string/id"
                     android:inputType="text"
+                    android:text="@={viewModel.id}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:met_floatingLabel="highlight"
+                    app:met_maxCharacters="15"
+                    app:met_primaryColor="@color/main" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/basicRegister_edtName"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:hint="이름"
+                    android:inputType="text"
+                    android:text="@={viewModel.name}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/basicRegister_edtId"
+                    app:met_floatingLabel="highlight"
+                    app:met_maxCharacters="15"
+                    app:met_primaryColor="@color/main" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/basicRegister_edtpw"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password_input"
+                    android:inputType="textPassword"
+                    android:text="@={viewModel.pw}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/basicRegister_edtName"
+                    app:met_floatingLabel="highlight"
+                    app:met_helperText="8글자 이상"
+                    app:met_maxCharacters="20"
+                    app:met_primaryColor="@color/main" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/basicRegister_edtpw2"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password_check"
+                    android:inputType="textPassword"
+                    android:text="@{viewModel.confirmPw}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/basicRegister_edtpw"
+                    app:met_floatingLabel="highlight"
+                    app:met_maxCharacters="20"
+                    app:met_primaryColor="@color/main" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/basicRegister_edtBirthday"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/birthday"
+                    android:inputType="number"
+                    android:text="@{viewModel.birthday}"
                     android:textColor="@color/black"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/basicRegister_cbDementia"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/basicRegister_edtpw2"
+                    app:met_floatingLabel="highlight"
+                    app:met_helperText="ex)19960407"
+                    app:met_maxCharacters="8"
                     app:met_primaryColor="@color/main" />
-            </android.support.constraint.ConstraintLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:paddingBottom="40dp"
-                android:gravity="center"
-                android:orientation="vertical"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/basicRegister_diseaseWrapper">
-
-                <TextView
+                <LinearLayout
+                    android:id="@+id/basicRegister_genderWrapper"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="가입하기 버튼을 누르면 본 서비스의 "
-                    android:textColor="@color/black" />
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/basicRegister_edtBirthday">
+
+                    <Button
+                        android:id="@+id/basicRegister_btnMale"
+                        android:layout_width="130dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/selector_gender_button"
+                        android:onClick="@{()->viewModel.onMaleClick()}"
+                        android:text="@string/male"
+                        android:textColor="@drawable/selector_gender_button" />
+
+                    <Button
+                        android:id="@+id/basicRegister_btnFemale"
+                        android:layout_width="130dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/selector_gender_button"
+                        android:onClick="@{()->viewModel.onFemaleClick()}"
+                        android:text="@string/female"
+                        android:textColor="@drawable/selector_gender_button" />
+                </LinearLayout>
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/basicRegister_edtPhoneNumber"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:hint="@string/phone_number"
+                    android:inputType="number"
+                    android:text="@{viewModel.phoneNumber}"
+                    android:textColor="@color/black"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/basicRegister_btnAuth"
+                    app:layout_constraintTop_toBottomOf="@id/basicRegister_genderWrapper"
+                    app:met_helperText="-제외 숫자만 입력"
+                    app:met_primaryColor="@color/main" />
+
+                <Button
+                    android:id="@+id/basicRegister_btnAuth"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/round_rect_gray"
+                    android:onClick="@{()->viewModel.onAuthPhoneClick()}"
+                    android:text="@string/doAuth"
+                    app:layout_constraintBottom_toBottomOf="@id/basicRegister_edtPhoneNumber"
+                    app:layout_constraintLeft_toRightOf="@id/basicRegister_edtPhoneNumber"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/basicRegister_edtPhoneNumber"
+
+
+                    />
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/basicRegister_diseaseWrapper"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/basicRegister_edtPhoneNumber">
+
+                    <TextView
+                        android:id="@+id/basicRegister_tvDisease"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/disease_check_explain"
+                        android:textColor="@color/black"
+                        android:textSize="13dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <CheckBox
+                        android:id="@+id/basicRegister_cbHeartDisease"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/heartDisease"
+                        app:layout_constraintTop_toBottomOf="@id/basicRegister_tvDisease" />
+
+                    <CheckBox
+                        android:id="@+id/basicRegister_cbCancer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cancer"
+                        app:layout_constraintTop_toBottomOf="@id/basicRegister_cbHeartDisease" />
+
+                    <CheckBox
+                        android:id="@+id/basicRegister_cbHypertension"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hypertension"
+                        app:layout_constraintTop_toBottomOf="@id/basicRegister_cbCancer" />
+
+                    <CheckBox
+                        android:id="@+id/basicRegister_cbDiabetes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/diabetes"
+                        app:layout_constraintTop_toBottomOf="@id/basicRegister_cbHypertension" />
+
+                    <CheckBox
+                        android:id="@+id/basicRegister_cbArthritis"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/arthritis"
+                        app:layout_constraintTop_toBottomOf="@id/basicRegister_cbDiabetes" />
+
+                    <CheckBox
+                        android:id="@+id/basicRegister_cbDementia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/dementia"
+                        app:layout_constraintTop_toBottomOf="@id/basicRegister_cbArthritis" />
+
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:id="@+id/basicRegister_edtEtcDisease"
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/etc"
+                        android:inputType="text"
+                        android:textColor="@color/black"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/basicRegister_cbDementia"
+                        app:met_primaryColor="@color/main" />
+                </android.support.constraint.ConstraintLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="25dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingBottom="40dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/basicRegister_diseaseWrapper">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/privacyInfoManagement"
-                        android:textColor="@color/main" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=" 과 "
+                        android:text="가입하기 버튼을 누르면 본 서비스의 "
                         android:textColor="@color/black" />
 
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/privacyInfoManagement"
+                            android:onClick="@{()->viewModel.onPrivacyTermClick()}"
+                            android:textColor="@color/main" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" 과 "
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{()->viewModel.onServiceTermClick()}"
+                            android:text="@string/termOfService"
+                            android:textColor="@color/main" />
+                    </LinearLayout>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/termOfService"
-                        android:textColor="@color/main" />
+                        android:layout_marginTop="10dp"
+                        android:text=" 에 동의한 것으로 간주합니다."
+                        android:textColor="@color/black" />
+
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text=" 에 동의한 것으로 간주합니다."
-                    android:textColor="@color/black" />
+            </android.support.constraint.ConstraintLayout>
 
-            </LinearLayout>
+        </ScrollView>
 
-        </android.support.constraint.ConstraintLayout>
+        <Button
+            android:id="@+id/basicRegister_register"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/main_dark"
+            android:text="@string/join"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:onClick="@{()->viewModel.onRegisterClick()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
-    </ScrollView>
-
-    <Button
-        android:id="@+id/basicRegister_register"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/main_dark"
-        android:text="@string/join"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-</android.support.constraint.ConstraintLayout>
+        <android.support.v4.widget.ContentLoadingProgressBar
+            android:id="@+id/address_looking_up"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="25dp"
+            android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+</layout>

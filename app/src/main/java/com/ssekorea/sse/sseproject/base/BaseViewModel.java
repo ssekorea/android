@@ -1,6 +1,7 @@
 package com.ssekorea.sse.sseproject.base;
 
 
+import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.databinding.ObservableBoolean;
 
@@ -19,10 +20,12 @@ public abstract class BaseViewModel<N> extends ViewModel {
     private CompositeDisposable mCompositeDisposable;
 
     private WeakReference<N> mNavigator;
+    private MutableLiveData<Throwable> uiHandleError;
 
     public BaseViewModel(SchedulerProvider mSchedulerProvider) {
         this.mSchedulerProvider = mSchedulerProvider;
         this.mCompositeDisposable = new CompositeDisposable();
+        this.uiHandleError = new MutableLiveData<>();
     }
 
     @Override
@@ -51,6 +54,9 @@ public abstract class BaseViewModel<N> extends ViewModel {
         return mNavigator.get();
     }
 
+    public MutableLiveData<Throwable> getUiHandleError(){
+        return uiHandleError;
+    }
     public void setNavigator(N navigator) {
         this.mNavigator = new WeakReference<>(navigator);
     }

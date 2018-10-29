@@ -28,7 +28,7 @@
         <activity android:name="com.ssekorea.sse.sseproject.register.BasicRegisterActivity">
 
         </activity>
-        <activity android:name="com.ssekorea.sse.sseproject.register.SocialRegisterActivity"></activity>
+        <activity android:name="com.ssekorea.sse.sseproject.register.SocialRegisterActivity"/>
         <activity android:name="com.ssekorea.sse.sseproject.register.TermWebViewActivity">
 
         </activity>
