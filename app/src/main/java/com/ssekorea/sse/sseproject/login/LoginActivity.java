@@ -69,7 +69,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
         super.onCreate(savedInstanceState);
         mActivityLoginBinding = getViewDataBinding();
         mLoginViewModel.setNavigator(this);
-        mLoginViewModel.getUiHandleError().observe(this,throwable -> UIUtil.showToast(throwable != null ? throwable.getMessage() : "null message"));
+        mLoginViewModel.getUiHandleError().observe(this,throwable -> UIUtil.showToast(throwable != null ? throwable.toString() : "null message"));
         mActivityLoginBinding.loginBtnFacebook.setOnClickListener((v) -> {
             loginManager.logInWithReadPermissions(LoginActivity.this, Arrays.asList("public_profile", "email"));
             loginManager.registerCallback(fbCallbackManager, fbLoginCallback);
@@ -86,7 +86,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
                         }
                     }, e -> {
                         mLoginViewModel.setIsLoading(false);
-                        Log.e("loginActivity", "error while facebook Observable " + e.getMessage());
+                        Log.e("loginActivity", "statusCode while facebook Observable " + e.getMessage());
                     });
         });
         mActivityLoginBinding.loginBtnKakao.setOnClickListener((v)->{

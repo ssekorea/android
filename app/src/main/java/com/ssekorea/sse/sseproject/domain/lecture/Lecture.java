@@ -1,21 +1,34 @@
 package com.ssekorea.sse.sseproject.domain.lecture;
 
 
-public class Lecture {
-    private String lectureId;
-    private String title;
-    private String startTime;
-    private String endTime;
-    private String address1;
-    private String address2;
-    private String address3;
+import com.google.gson.annotations.SerializedName;
 
-    private int maxStudentNum;
-    private int curStudentNum;
-    private String explain;
-    private String lectureType;
-    private int maxTeacherNum;
-    private int curTeacherNum;
+public class Lecture {
+    @SerializedName("id")
+    String lectureId = "";
+    @SerializedName("title")
+    String title;
+    @SerializedName("startTime")
+    String startTime;
+    @SerializedName("endTime")
+    String endTime;
+    @SerializedName("placeAddress1")
+    String address1;
+    @SerializedName("placeAddress2")
+    String address2;
+    @SerializedName("placeAddress3")
+    String address3;
+
+    @SerializedName("maxStudentNum")
+    int maxStudentNum;
+    int curStudentNum = 0;
+    @SerializedName("explanation")
+    String explain;
+    @SerializedName("lectureType")
+    String lectureType;
+    @SerializedName("maxTeacherNum")
+    int maxTeacherNum;
+    int curTeacherNum = 0;
 
 
     public String getLectureId() {

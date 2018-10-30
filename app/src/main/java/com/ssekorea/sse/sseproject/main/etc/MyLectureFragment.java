@@ -1,4 +1,4 @@
-package com.ssekorea.sse.sseproject.main.MyLectureFragment;
+package com.ssekorea.sse.sseproject.main.etc;
 
 
 import android.os.Bundle;

@@ -36,7 +36,7 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
         String token = AccessToken.getCurrentAccessToken().getToken();
         if (token == null || token.equals("")) {
             getUiHandleError().setValue(new Throwable("페이스북 로그인 오류. 다른 방법을 이용해 주세요"));
-            Log.e("LoginViewModel", "error while get current token in tryLoginWithFacebook");
+            Log.e("LoginViewModel", "statusCode while get current token in tryLoginWithFacebook");
             return;
         }
         try {
@@ -44,7 +44,7 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
         } catch (JSONException e) {
             e.printStackTrace();
             getUiHandleError().setValue(new Throwable("페이스북 로그인 오류. 다른 방법을 이용해 주세요"));
-            Log.e("LoginViewModel", "error while get facebook Id in tryLoginWithFacebook");
+            Log.e("LoginViewModel", "statusCode while get facebook Id in tryLoginWithFacebook");
             return;
         }
         Log.e("LoginViewModel",fbJsonData.toString());
@@ -91,7 +91,7 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
                             break;
                         case ResponseStatus.CODE_INVALID_USER:
                             getUiHandleError().setValue(new Throwable("존재하지 않는 유저입니다."));
-                            Log.e("LoginViewModel", "invalid user , " + id + pw);
+                            Log.e("LoginViewModel", "invalid userInfoDTO , " + id + pw);
                             break;
                         case ResponseStatus.CODE_INVALID_REQUEST_BODY:
                             getUiHandleError().setValue(new Throwable("아이디와 비밀번호 입력 형식을 확인해주세요"));

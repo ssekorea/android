@@ -7,6 +7,6 @@ import java.util.List;
 public class LectureResponse {
     public String statusCode;
     public class GetLectureLists extends LectureResponse{
-        public List<Lecture> lectureList;
+        public List<Lecture> lectureDTO;
     }
 }

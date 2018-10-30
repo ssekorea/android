@@ -1,4 +1,4 @@
-package com.ssekorea.sse.sseproject.main.HomeFragment;
+package com.ssekorea.sse.sseproject.main.home;
 
 
 import android.os.Bundle;

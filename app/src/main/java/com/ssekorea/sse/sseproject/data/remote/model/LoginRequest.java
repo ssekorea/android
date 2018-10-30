@@ -6,12 +6,12 @@ public class LoginRequest {
     }
 
     public static class BasicLoginRequest{
-        private String id;
-        private String pw;
+        private String userId;
+        private String password;
 
         public BasicLoginRequest(String id, String pw){
-            this.id = id;
-            this.pw = pw;
+            this.userId = id;
+            this.password = pw;
         }
     }
 

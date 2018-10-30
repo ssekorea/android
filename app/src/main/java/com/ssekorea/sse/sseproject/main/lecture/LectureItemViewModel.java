@@ -40,6 +40,6 @@ public class LectureItemViewModel {
     }
 
     private String getTimeString(String startTime, String endTime) {
-        return null;
+        return startTime+"~"+endTime;
     }
 }

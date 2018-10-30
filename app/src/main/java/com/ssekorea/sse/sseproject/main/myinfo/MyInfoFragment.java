@@ -1,4 +1,4 @@
-package com.ssekorea.sse.sseproject.main.MyInfoFragment;
+package com.ssekorea.sse.sseproject.main.myinfo;
 
 
 import android.os.Bundle;

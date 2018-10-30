@@ -16,14 +16,14 @@
 
         </activity>
         <activity android:name="com.ssekorea.sse.sseproject.SplashActivity">
-
-        </activity>
-        <activity android:name="com.ssekorea.sse.sseproject.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name="com.ssekorea.sse.sseproject.login.LoginActivity">
+
         </activity>
         <activity android:name="com.ssekorea.sse.sseproject.register.basic.BasicRegisterActivity">
 

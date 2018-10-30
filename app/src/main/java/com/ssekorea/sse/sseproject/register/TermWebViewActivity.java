@@ -1,10 +1,15 @@
 package com.ssekorea.sse.sseproject.register;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.webkit.WebView;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.ssekorea.sse.sseproject.R;
+import com.ssekorea.sse.sseproject.generated.callback.OnClickListener;
 
 public class TermWebViewActivity extends Activity {
 
@@ -15,8 +20,15 @@ public class TermWebViewActivity extends Activity {
         WebView web = (WebView)findViewById(R.id.termWebView_webView);
 
         web.getSettings().setJavaScriptEnabled(true);  //자바스크립트 허용
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("title");
+        String url = intent.getStringExtra("url");
 
-        web.loadUrl("http://165.194.104.92:4402/%EA%B0%9C%EC%9D%B8%EC%A0%95%EB%B3%B4%EC%B2%98%EB%A6%AC%EB%B0%A9%EC%B9%A8.html");  //보여줄 사이트 url
+        TextView tv = findViewById(R.id.tv_webviewTitle);
+        ImageButton b = findViewById(R.id.termWebView_back);
+        b.setOnClickListener(v->finish());
+        tv.setText(name);
+        web.loadUrl(url);  //보여줄 사이트 url
 
 //        web.setWebViewClient(new WebViewClient(){   //현재의 엑티비티 내에서 url을 보여주고자 할 경우 설정.
 //

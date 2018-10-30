@@ -11,6 +11,7 @@ import com.ssekorea.sse.sseproject.R;
 import com.ssekorea.sse.sseproject.base.BaseActivity;
 import com.ssekorea.sse.sseproject.databinding.ActivityBasicRegisterBinding;
 import com.ssekorea.sse.sseproject.main.MainActivity;
+import com.ssekorea.sse.sseproject.register.TermWebViewActivity;
 import com.ssekorea.sse.sseproject.util.UIUtil;
 
 import javax.inject.Inject;
@@ -56,7 +57,7 @@ public class BasicRegisterActivity extends BaseActivity<ActivityBasicRegisterBin
                 mActivityBasicRegisterBinding.basicRegisterBtnMale.setEnabled(true);
                 mActivityBasicRegisterBinding.basicRegisterBtnFemale.setEnabled(false);
             }else{
-                Log.e("BasicRegisterActivity","error while get gender : "+gender);
+                Log.e("BasicRegisterActivity","statusCode while get gender : "+gender);
             }
         });
     }
@@ -65,5 +66,13 @@ public class BasicRegisterActivity extends BaseActivity<ActivityBasicRegisterBin
     public void navigateToMain() {
         startActivity(new Intent(BasicRegisterActivity.this,MainActivity.class));
         finish();
+    }
+
+    @Override
+    public void popupWebView(String title, String url) {
+        Intent intent = new Intent(BasicRegisterActivity.this,TermWebViewActivity.class);
+        intent.putExtra("title",title);
+        intent.putExtra("url",url);
+        startActivity(intent);
     }
 }

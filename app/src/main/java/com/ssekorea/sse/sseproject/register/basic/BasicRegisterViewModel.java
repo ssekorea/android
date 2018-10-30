@@ -1,6 +1,7 @@
 package com.ssekorea.sse.sseproject.register.basic;
 
 import android.arch.lifecycle.MutableLiveData;
+import android.content.Intent;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.util.Log;
@@ -85,17 +86,17 @@ public class BasicRegisterViewModel extends BaseViewModel<BasicRegisterNavigator
                 //.doOnSuccess(response->userRepository.setUser(registerUser))
                 .subscribe(response -> {
                             setIsLoading(false);
-                            switch (response.error) {
+                            switch (response.statusCode) {
                                 case ResponseStatus.CODE_SUCCESS:
-                                    userRepository.setUser(response.user);
+                                    userRepository.setUser(response.userInfoDTO);
                                     getNavigator().navigateToMain();
                                     break;
                                 case ResponseStatus.CODE_INVALID_REQUEST_BODY:
                                     getUiHandleError().setValue(new Throwable("입력형식을 확인해주세요"));
                                     break;
                                 default:
-                                    getUiHandleError().setValue(new Throwable("Unknown Handle Response Code : " + response.error));
-                                    Log.e("BasicRegisterViewModel", "Unknown Handle Response Code : " + response.error);
+                                    getUiHandleError().setValue(new Throwable("Unknown Handle Response Code : " + response.statusCode));
+                                    Log.e("BasicRegisterViewModel", "Unknown Handle Response Code : " + response.statusCode);
                             }
                         },
                         throwable -> {
@@ -108,10 +109,12 @@ public class BasicRegisterViewModel extends BaseViewModel<BasicRegisterNavigator
 
     public void onServiceTermClick() {
         // todo navigate Term webview with url
+        getNavigator().popupWebView("서비스 이용약관","http://165.194.104.92:4401/service_term.html");
     }
 
     public void onPrivacyTermClick() {
         // todo navigate Term webview with url
+        getNavigator().popupWebView("개인정보 이용약관","http://165.194.104.92:4401/privacy_term.html");
     }
 
     public ObservableField<String> getPw() {

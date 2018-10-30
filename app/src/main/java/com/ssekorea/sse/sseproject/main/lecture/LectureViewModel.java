@@ -28,8 +28,8 @@ public class LectureViewModel extends BaseViewModel<LectureNavigator> {
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(response->{
                     setIsLoading(false);
-                    if (response.lectureList != null)
-                        getLectureListLiveData().setValue(response.lectureList);
+                    if (response.lectureDTO != null)
+                        getLectureListLiveData().setValue(response.lectureDTO);
                 },throwable ->{
                     setIsLoading(false);
                     getUiHandleError().setValue(throwable);
