@@ -11,7 +11,6 @@ import com.ssekorea.sse.sseproject.SseApp;
 
 public final class UIUtil {
     private UIUtil(){
-
     }
 
     public static ProgressDialog showLoadingDialog(Context context) {

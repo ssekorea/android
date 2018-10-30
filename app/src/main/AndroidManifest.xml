@@ -25,10 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.ssekorea.sse.sseproject.register.BasicRegisterActivity">
+        <activity android:name="com.ssekorea.sse.sseproject.register.basic.BasicRegisterActivity">
 
         </activity>
-        <activity android:name="com.ssekorea.sse.sseproject.register.SocialRegisterActivity"/>
+        <activity android:name="com.ssekorea.sse.sseproject.register.social.SocialRegisterActivity"/>
         <activity android:name="com.ssekorea.sse.sseproject.register.TermWebViewActivity">
 
         </activity>

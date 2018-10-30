@@ -13,6 +13,10 @@ public class RegisterRequest {
         public BasicRegisterRequest(User user){
             this.user = user;
         }
+
+        public User getUser() {
+            return user;
+        }
     }
 
     public static class FacebookRegisterRequest {

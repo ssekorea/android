@@ -8,6 +8,8 @@ import com.ssekorea.sse.sseproject.data.local.AppPreferencesHelper;
 import com.ssekorea.sse.sseproject.data.local.PreferencesHelper;
 import com.ssekorea.sse.sseproject.data.remote.ApiHelper;
 import com.ssekorea.sse.sseproject.data.remote.ApiHelperImpl;
+import com.ssekorea.sse.sseproject.domain.lecture.AppLectureRepository;
+import com.ssekorea.sse.sseproject.domain.lecture.LectureRepository;
 import com.ssekorea.sse.sseproject.domain.user.AppUserRepository;
 import com.ssekorea.sse.sseproject.domain.user.UserRepository;
 import com.ssekorea.sse.sseproject.util.rx.AppSchedulerProvider;
@@ -27,8 +29,15 @@ public class AppModule {
     }
 
     @Provides
+    @Singleton
     UserRepository providesUserRepository(PreferencesHelper preferencesHelper){
         return new AppUserRepository(preferencesHelper);
+    }
+
+    @Provides
+    @Singleton
+    LectureRepository provideLectureRepository(){
+        return new AppLectureRepository();
     }
 
     @Provides
@@ -52,4 +61,5 @@ public class AppModule {
     ApiHelper provideApiHelper(){
         return new ApiHelperImpl();
     }
+
 }

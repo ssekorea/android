@@ -1,7 +1,8 @@
-package com.ssekorea.sse.sseproject.register;
+package com.ssekorea.sse.sseproject.register.basic;
 
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -9,6 +10,7 @@ import com.ssekorea.sse.sseproject.BR;
 import com.ssekorea.sse.sseproject.R;
 import com.ssekorea.sse.sseproject.base.BaseActivity;
 import com.ssekorea.sse.sseproject.databinding.ActivityBasicRegisterBinding;
+import com.ssekorea.sse.sseproject.main.MainActivity;
 import com.ssekorea.sse.sseproject.util.UIUtil;
 
 import javax.inject.Inject;
@@ -57,5 +59,11 @@ public class BasicRegisterActivity extends BaseActivity<ActivityBasicRegisterBin
                 Log.e("BasicRegisterActivity","error while get gender : "+gender);
             }
         });
+    }
+
+    @Override
+    public void navigateToMain() {
+        startActivity(new Intent(BasicRegisterActivity.this,MainActivity.class));
+        finish();
     }
 }

@@ -1,5 +1,6 @@
 package com.ssekorea.sse.sseproject.data.remote;
 
+import com.ssekorea.sse.sseproject.data.remote.model.LectureResponse;
 import com.ssekorea.sse.sseproject.data.remote.model.LoginRequest;
 import com.ssekorea.sse.sseproject.data.remote.model.LoginResponse;
 import com.ssekorea.sse.sseproject.data.remote.model.RegisterRequest;
@@ -14,5 +15,7 @@ public interface ApiHelper {
 
     Single<LoginResponse> loginWithKakao(LoginRequest.KakaoLoginRequest request);
 
-    Single<RegisterResponse> registerWithBasic(RegisterRequest request);
+    Single<RegisterResponse> registerWithBasic(RegisterRequest.BasicRegisterRequest request);
+
+    Single<LectureResponse.GetLectureLists> getLectures();
 }

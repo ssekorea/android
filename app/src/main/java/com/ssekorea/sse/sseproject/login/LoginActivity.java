@@ -22,7 +22,7 @@ import com.ssekorea.sse.sseproject.BR;
 import com.ssekorea.sse.sseproject.R;
 import com.ssekorea.sse.sseproject.base.BaseActivity;
 import com.ssekorea.sse.sseproject.databinding.ActivityLoginBinding;
-import com.ssekorea.sse.sseproject.register.BasicRegisterActivity;
+import com.ssekorea.sse.sseproject.register.basic.BasicRegisterActivity;
 import com.ssekorea.sse.sseproject.util.UIUtil;
 
 import java.util.Arrays;

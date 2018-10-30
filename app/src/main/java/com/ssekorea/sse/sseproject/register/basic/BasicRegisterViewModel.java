@@ -1,19 +1,21 @@
-package com.ssekorea.sse.sseproject.register;
+package com.ssekorea.sse.sseproject.register.basic;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
-import android.widget.Toast;
+import android.util.Log;
 
 import com.ssekorea.sse.sseproject.base.BaseViewModel;
 import com.ssekorea.sse.sseproject.data.remote.ApiHelper;
-import com.ssekorea.sse.sseproject.data.remote.model.LoginRequest;
 import com.ssekorea.sse.sseproject.data.remote.model.RegisterRequest;
+import com.ssekorea.sse.sseproject.data.remote.model.ResponseStatus;
 import com.ssekorea.sse.sseproject.domain.user.User;
+import com.ssekorea.sse.sseproject.domain.user.UserRepository;
 import com.ssekorea.sse.sseproject.util.FormatUtil;
 import com.ssekorea.sse.sseproject.util.rx.SchedulerProvider;
 
 public class BasicRegisterViewModel extends BaseViewModel<BasicRegisterNavigator> {
+
     private ObservableField<String> id = new ObservableField<>();
     private ObservableField<String> pw = new ObservableField<>();
     private ObservableField<String> name = new ObservableField<>();
@@ -23,41 +25,49 @@ public class BasicRegisterViewModel extends BaseViewModel<BasicRegisterNavigator
     private MutableLiveData<String> gender = new MutableLiveData<>();
     private ObservableBoolean isPhoneAuthed = new ObservableBoolean(true);
     private ApiHelper apiHelper;
-    public BasicRegisterViewModel(SchedulerProvider mSchedulerProvider) {
+    private UserRepository userRepository;
+
+    public BasicRegisterViewModel(SchedulerProvider mSchedulerProvider, ApiHelper apiHelper, UserRepository userRepository) {
         super(mSchedulerProvider);
+        this.userRepository = userRepository;
+        this.apiHelper = apiHelper;
 
     }
 
-    public void onMaleClick(){
+    public void onMaleClick() {
         gender.setValue("M");
     }
 
-    public void onFemaleClick(){
+    public void onFemaleClick() {
         gender.setValue("F");
     }
 
-    public void onAuthPhoneClick(){
+    public void onAuthPhoneClick() {
         // todo navigate onAuthPhoneClick
     }
 
-    public void onRegisterClick(){
-        if (id.get() == null || (""+id.get()).length()< 5 || (""+id.get()).length()> 15 ){
+    public void onRegisterClick() {
+        if (id.get() == null || ("" + id.get()).length() < 5 || ("" + id.get()).length() > 15) {
             getUiHandleError().setValue(new Throwable("아이디를 확인해주세요. 아이디는 5글자 이상, 15글자 이하 입니다."));
             return;
         }
-        if (pw.get() == null || (""+pw.get()).length()< 8){
+        if (pw.get() == null || ("" + pw.get()).length() < 8) {
             getUiHandleError().setValue(new Throwable("비밀번호를 확인해주세요. 비밀번호는 8글자 이상입니다."));
             return;
         }
-        if (confirmPw.get() == null || !(""+pw.get()).equals(confirmPw.get())){
+        if (name.get() == null || ("" + name.get()).length() < 1) {
+            getUiHandleError().setValue(new Throwable("이름을 입력해주세요"));
+            return;
+        }
+        if (confirmPw.get() == null || !("" + pw.get()).equals(confirmPw.get())) {
             getUiHandleError().setValue(new Throwable("비밀번호와 비밀번호 확인란이 일치하지 않습니다"));
             return;
         }
-        if (birthday.get() == null || !FormatUtil.isBirthdayFormat(birthday.get())){
+        if (birthday.get() == null || !FormatUtil.isBirthdayFormat(birthday.get())) {
             getUiHandleError().setValue(new Throwable("생일 형식을 확인해주세요 ex)19960407"));
             return;
         }
-        if (!isPhoneAuthed.get()){
+        if (!isPhoneAuthed.get()) {
             getUiHandleError().setValue(new Throwable("휴대폰 인증을 진행해주세요."));
             return;
         }
@@ -68,12 +78,39 @@ public class BasicRegisterViewModel extends BaseViewModel<BasicRegisterNavigator
         registerUser.setBirthday(birthday.get());
         registerUser.setPhoneNumber(phoneNumber.get());
         registerUser.setGender(gender.getValue());
-        // todo getUiHandleError().setValue(apiHelper.(new RegisterRequest.BasicRegisterRequest(registerUser)));
+        setIsLoading(true);
+        getCompositeDisposable().add(apiHelper.registerWithBasic(new RegisterRequest.BasicRegisterRequest(registerUser))
+                .subscribeOn(getSchedulerProvider().io())
+                .observeOn(getSchedulerProvider().ui())
+                //.doOnSuccess(response->userRepository.setUser(registerUser))
+                .subscribe(response -> {
+                            setIsLoading(false);
+                            switch (response.error) {
+                                case ResponseStatus.CODE_SUCCESS:
+                                    userRepository.setUser(response.user);
+                                    getNavigator().navigateToMain();
+                                    break;
+                                case ResponseStatus.CODE_INVALID_REQUEST_BODY:
+                                    getUiHandleError().setValue(new Throwable("입력형식을 확인해주세요"));
+                                    break;
+                                default:
+                                    getUiHandleError().setValue(new Throwable("Unknown Handle Response Code : " + response.error));
+                                    Log.e("BasicRegisterViewModel", "Unknown Handle Response Code : " + response.error);
+                            }
+                        },
+                        throwable -> {
+                            setIsLoading(false);
+                            Log.e("noway",""+throwable.toString());
+                            getUiHandleError().setValue(throwable);
+                        })
+        );
     }
-    public void onServiceTermClick(){
+
+    public void onServiceTermClick() {
         // todo navigate Term webview with url
     }
-    public void onPrivacyTermClick(){
+
+    public void onPrivacyTermClick() {
         // todo navigate Term webview with url
     }
 
