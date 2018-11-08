@@ -10,6 +10,7 @@ public class ApiEndpoint {
     public static final String ENDPOINT_LOGIN_FACEBOOK = Config.BASE_URL; // todo
     public static final String ENDPOINT_LOGIN_KAKAO = Config.BASE_URL; // todo
     public static final String ENDPOINT_LECTURE = Config.BASE_URL + "/lectures";
+    public static final String ENDPOINT_SHOP = Config.BASE_URL + "/products";
 
     private ApiEndpoint(){
         // 객체 금지

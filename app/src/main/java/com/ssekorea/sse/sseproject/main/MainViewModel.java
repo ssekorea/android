@@ -11,11 +11,14 @@ import com.ssekorea.sse.sseproject.main.lecture.LectureFragment;
 import com.ssekorea.sse.sseproject.util.rx.SchedulerProvider;
 
 public class MainViewModel extends BaseViewModel {
-    private MutableLiveData<Fragment> selectedFragment= new MutableLiveData<>();
-    HomeFragment homeFragment;
-    LectureFragment lectureFragment;
+    public ObservableField<String> title;
+    private MutableLiveData<Fragment> selectedFragment = new MutableLiveData<>();
+    private HomeFragment homeFragment;
+    private LectureFragment lectureFragment;
+
     public MainViewModel(SchedulerProvider mSchedulerProvider) {
         super(mSchedulerProvider);
+        title = new ObservableField<>();
         homeFragment = new HomeFragment();
         lectureFragment = LectureFragment.newInstance();
         selectedFragment.setValue(homeFragment);
@@ -25,23 +28,23 @@ public class MainViewModel extends BaseViewModel {
         return selectedFragment;
     }
 
-    public void onHomeClick(){
+    public void onHomeClick() {
         selectedFragment.setValue(homeFragment);
     }
 
-    public void onLectureClick(){
+    public void onLectureClick() {
         selectedFragment.setValue(lectureFragment);
     }
 
-    public void onShopClick(){
+    public void onShopClick() {
 
     }
 
-    public void onMyInfoClick(){
+    public void onMyInfoClick() {
 
     }
 
-    public void onEtcClick(){
+    public void onEtcClick() {
 
     }
 }

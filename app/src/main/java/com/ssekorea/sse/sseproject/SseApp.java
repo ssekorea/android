@@ -5,6 +5,8 @@ import android.app.Application;
 import android.content.Context;
 
 import com.androidnetworking.AndroidNetworking;
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.module.AppGlideModule;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.kakao.auth.KakaoSDK;
@@ -24,7 +26,8 @@ public class SseApp extends Application implements HasActivityInjector {
     DispatchingAndroidInjector<Activity> activityDispatchingAndroidInjector;
 
 
-
+    //@GlideModule
+    //public final class MyAppGlideModule extends AppGlideModule {}
     @Override
     public DispatchingAndroidInjector<Activity> activityInjector() {
         return activityDispatchingAndroidInjector;

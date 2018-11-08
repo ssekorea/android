@@ -1,6 +1,7 @@
 package com.ssekorea.sse.sseproject.main.lecture;
 
 
+import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import com.ssekorea.sse.sseproject.R;
 import com.ssekorea.sse.sseproject.BR;
 import com.ssekorea.sse.sseproject.base.BaseFragment;
 import com.ssekorea.sse.sseproject.databinding.FragmentLectureBinding;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -82,4 +85,5 @@ public class LectureFragment extends BaseFragment<FragmentLectureBinding,Lecture
             lectureAdapter.addItems(lectureList);
         });
     }
+
 }

@@ -6,6 +6,7 @@ import com.ssekorea.sse.sseproject.data.remote.model.LoginResponse;
 import com.rx2androidnetworking.Rx2AndroidNetworking;
 import com.ssekorea.sse.sseproject.data.remote.model.RegisterRequest;
 import com.ssekorea.sse.sseproject.data.remote.model.RegisterResponse;
+import com.ssekorea.sse.sseproject.data.remote.model.ShopResponse;
 
 import io.reactivex.Single;
 import okhttp3.RequestBody;
@@ -49,5 +50,12 @@ public class ApiHelperImpl implements ApiHelper {
         return Rx2AndroidNetworking.get(ApiEndpoint.ENDPOINT_LECTURE)
                 .build()
                 .getObjectSingle(LectureResponse.GetLectureLists.class);
+    }
+
+    @Override
+    public Single<ShopResponse.GetShopList> getShopItems() {
+        return Rx2AndroidNetworking.get(ApiEndpoint.ENDPOINT_SHOP)
+                .build()
+                .getObjectSingle(ShopResponse.GetShopList.class);
     }
 }
