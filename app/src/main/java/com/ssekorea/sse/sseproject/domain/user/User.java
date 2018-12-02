@@ -11,9 +11,9 @@ public class User {
     String jwtToken;
     @SerializedName("access_token")
     String accessToken;
-    @SerializedName("join_type")
+    @SerializedName("registerType")
     String joinType;
-    @SerializedName("user_type")
+    @SerializedName("userType;")
     String userType;
     @SerializedName("name")
     String name;
@@ -23,6 +23,21 @@ public class User {
     String phoneNumber;
     @SerializedName("sex")
     String gender;
+
+    @SerializedName("heartDisease")
+    int heartDisease;
+    @SerializedName("cancer")
+    int cancer;
+    @SerializedName("highBloodPressure")
+    int highBloodPressure;
+    @SerializedName("diabetes")
+    int diabetes;
+    @SerializedName("arthritis")
+    int arthritis;
+    @SerializedName("dementia")
+    int dementia;
+    @SerializedName("etc")
+    String etc;
 
     public void setName(String name) {
         this.name = name;
@@ -119,5 +134,61 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public int getHeartDisease() {
+        return heartDisease;
+    }
+
+    public void setHeartDisease(int heartDisease) {
+        this.heartDisease = heartDisease;
+    }
+
+    public int getCancer() {
+        return cancer;
+    }
+
+    public void setCancer(int cancer) {
+        this.cancer = cancer;
+    }
+
+    public int getHighBloodPressure() {
+        return highBloodPressure;
+    }
+
+    public void setHighBloodPressure(int highBloodPressure) {
+        this.highBloodPressure = highBloodPressure;
+    }
+
+    public int getDiabetes() {
+        return diabetes;
+    }
+
+    public void setDiabetes(int diabetes) {
+        this.diabetes = diabetes;
+    }
+
+    public int getArthritis() {
+        return arthritis;
+    }
+
+    public void setArthritis(int arthritis) {
+        this.arthritis = arthritis;
+    }
+
+    public int getDementia() {
+        return dementia;
+    }
+
+    public void setDementia(int dementia) {
+        this.dementia = dementia;
+    }
+
+    public String getEtc() {
+        return etc;
+    }
+
+    public void setEtc(String etc) {
+        this.etc = etc;
     }
 }

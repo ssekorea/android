@@ -1,5 +1,6 @@
 package com.ssekorea.sse.sseproject.data.remote;
 
+import com.ssekorea.sse.sseproject.data.remote.model.FeedResponse;
 import com.ssekorea.sse.sseproject.data.remote.model.LectureResponse;
 import com.ssekorea.sse.sseproject.data.remote.model.LoginRequest;
 import com.ssekorea.sse.sseproject.data.remote.model.LoginResponse;
@@ -22,4 +23,6 @@ public interface ApiHelper {
     Single<LectureResponse.GetLectureLists> getLectures();
 
     Single<ShopResponse.GetShopList> getShopItems();
+
+    Single<FeedResponse.GetFeedList> getFeedList();
 }

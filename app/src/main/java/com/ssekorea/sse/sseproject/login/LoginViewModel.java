@@ -1,9 +1,5 @@
 package com.ssekorea.sse.sseproject.login;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.databinding.ObservableBoolean;
-import android.databinding.ObservableField;
 import android.util.Log;
 
 import com.facebook.AccessToken;
@@ -14,7 +10,6 @@ import com.ssekorea.sse.sseproject.data.remote.model.LoginRequest;
 import com.ssekorea.sse.sseproject.data.remote.model.ResponseStatus;
 import com.ssekorea.sse.sseproject.domain.user.User;
 import com.ssekorea.sse.sseproject.domain.user.UserRepository;
-import com.ssekorea.sse.sseproject.util.UIUtil;
 import com.ssekorea.sse.sseproject.util.rx.SchedulerProvider;
 
 import org.json.JSONException;
@@ -53,9 +48,11 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(
                         loginResponse -> {
-                            switch (loginResponse.error) {
+                            switch (loginResponse.statusCode) {
                                 case ResponseStatus.CODE_SUCCESS:
-                                    userRepository.setUser(loginResponse.user);
+                                    userRepository.setUser(loginResponse.userInfoDTO);
+                                    Log.e("와우","잘됨");
+                                    Log.e("와우",loginResponse.userInfoDTO.toString());
                                     //todo navigate to main
                                     break;
                                 case ResponseStatus.CODE_INVALID_USER:
@@ -67,8 +64,8 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
                                     //todo navigate to register_for_social
                                     break;
                                 default:
-                                    getUiHandleError().setValue(new Throwable("요청오류 . ERROR CODE : " + loginResponse.error));
-                                    Log.e("LoginViewModel", "invalid response code " + loginResponse.error);
+                                    getUiHandleError().setValue(new Throwable("요청오류 . ERROR CODE : " + loginResponse.statusCode));
+                                    Log.e("LoginViewModel", "invalid response code " + loginResponse.statusCode);
                                     break;
                             }
                         }, throwable -> getUiHandleError().setValue(throwable)));
@@ -80,14 +77,17 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .doOnSuccess(response -> {
-                    if (response.error.equals(ResponseStatus.CODE_SUCCESS))
-                        userRepository.setUser(response.user);
+                    if (response.statusCode.equals(ResponseStatus.CODE_SUCCESS))
+                        userRepository.setUser(response.userInfoDTO);
                 })
                 .subscribe(response -> {
                     setIsLoading(false);
-                    switch (response.error) {
+                    switch (response.statusCode) {
                         case ResponseStatus.CODE_SUCCESS:
-                            //todo navigate to main
+                            userRepository.setUser(response.userInfoDTO);
+                            Log.e("와우","잘됨");
+                            Log.e("와우",response.userInfoDTO.toString());
+                            getNavigator().navigateToBasicRegister();
                             break;
                         case ResponseStatus.CODE_INVALID_USER:
                             getUiHandleError().setValue(new Throwable("존재하지 않는 유저입니다."));
@@ -98,8 +98,8 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
                             Log.e("LoginViewModel", "invalid request, " + id + pw);
                             break;
                         default:
-                            getUiHandleError().setValue(new Throwable("요청오류 . ERROR CODE : " + response.error));
-                            Log.e("LoginViewModel", "invalid response code " + response.error);
+                            getUiHandleError().setValue(new Throwable("요청오류 . ERROR CODE : " + response.statusCode));
+                            Log.e("LoginViewModel", "invalid response code " + response.statusCode);
                             break;
                     }
                 }, error -> {
@@ -115,9 +115,9 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(
                         loginResponse -> {
-                            switch (loginResponse.error) {
+                            switch (loginResponse.statusCode) {
                                 case ResponseStatus.CODE_SUCCESS:
-                                    userRepository.setUser(loginResponse.user);
+                                    userRepository.setUser(loginResponse.userInfoDTO);
                                     //todo navigate to main
                                     break;
                                 case ResponseStatus.CODE_INVALID_USER:
@@ -129,8 +129,8 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
                                     //todo navigate to register_for_social
                                     break;
                                 default:
-                                    getUiHandleError().setValue(new Throwable("요청오류 . ERROR CODE : " + loginResponse.error));
-                                    Log.e("LoginViewModel", "invalid response code " + loginResponse.error);
+                                    getUiHandleError().setValue(new Throwable("요청오류 . ERROR CODE : " + loginResponse.statusCode));
+                                    Log.e("LoginViewModel", "invalid response code " + loginResponse.statusCode);
                                     break;
                             }
                         },

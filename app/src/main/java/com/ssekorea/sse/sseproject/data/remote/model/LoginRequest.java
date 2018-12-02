@@ -16,23 +16,23 @@ public class LoginRequest {
     }
 
     public static class FacebookLoginRequest {
-        private String token;
-        private String id;
+        private String accessToken;
+        private String userId;
 
         public FacebookLoginRequest(String id, String token){
-            this.id = id;
-            this.token = token;
+            this.userId = id;
+            this.accessToken = token;
         }
     }
 
 
     public static class KakaoLoginRequest {
-        private String token;
-        private String id;
+        private String accessToken;
+        private String userId;
 
         public KakaoLoginRequest(String id, String token){
-            this.id = id;
-            this.token = token;
+            this.userId = id;
+            this.accessToken = token;
         }
     }
 }

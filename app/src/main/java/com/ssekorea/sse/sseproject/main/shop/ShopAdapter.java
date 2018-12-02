@@ -66,10 +66,12 @@ public class ShopAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             shopItemViewModel = new ShopItemViewModel(shopItem, this);
             binding.setViewModel(shopItemViewModel);
             binding.executePendingBindings();
-            GlideApp.with(binding.imgShopItem)
-                    .load(shopItem.getImgs().get(0))
-                    .centerCrop()
-                    .into(binding.imgShopItem);
+            if (shopItem.getImgs().size()>0) {
+                GlideApp.with(binding.imgShopItem)
+                        .load(shopItem.getImgs().get(0))
+                        .centerCrop()
+                        .into(binding.imgShopItem);
+            }
         }
 
         @Override

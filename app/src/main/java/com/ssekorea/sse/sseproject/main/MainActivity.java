@@ -12,9 +12,11 @@ import com.ssekorea.sse.sseproject.BR;
 import com.ssekorea.sse.sseproject.base.BaseActivity;
 import com.ssekorea.sse.sseproject.base.BaseViewModel;
 import com.ssekorea.sse.sseproject.databinding.ActivityMainBinding;
+import com.ssekorea.sse.sseproject.main.etc.EtcFragment;
 import com.ssekorea.sse.sseproject.main.home.HomeFragment;
 import com.ssekorea.sse.sseproject.main.lecture.LectureFragment;
 import com.ssekorea.sse.sseproject.main.myinfo.MyInfoFragment;
+import com.ssekorea.sse.sseproject.main.shop.ShopFragment;
 
 import javax.inject.Inject;
 
@@ -66,12 +68,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding,MainViewModel
                 setButtonDisabled(findViewById(R.id.btn_home));
             if(fragment instanceof LectureFragment)
                 setButtonDisabled(findViewById(R.id.btn_lecture));
-            //todo if(fragment instanceof ShopFragment)
-            //    setButtonDisabled(findViewById(R.id.btn_lecture));
+            if(fragment instanceof ShopFragment)
+                setButtonDisabled(findViewById(R.id.btn_shop));
             if(fragment instanceof MyInfoFragment)
                 setButtonDisabled(findViewById(R.id.btn_myInfo));
-            // todo if(fragment instanceof EtcFragment)
-            //    setButtonDisabled(findViewById(R.id.btn_lecture));
+            if(fragment instanceof EtcFragment)
+                setButtonDisabled(findViewById(R.id.btn_etc));
         });
     }
 

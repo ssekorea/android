@@ -58,8 +58,8 @@ public class AppModule {
 
     @Provides
     @Singleton
-    ApiHelper provideApiHelper(){
-        return new ApiHelperImpl();
+    ApiHelper provideApiHelper(UserRepository userRepository){
+        return new ApiHelperImpl(userRepository);
     }
 
 }

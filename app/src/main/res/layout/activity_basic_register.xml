@@ -216,6 +216,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
+                        android:checked="@{viewModel.isHeartDisease}"
                         android:text="@string/heartDisease"
                         app:layout_constraintTop_toBottomOf="@id/basicRegister_tvDisease" />
 
@@ -223,6 +224,7 @@
                         android:id="@+id/basicRegister_cbCancer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="@{viewModel.isCancer}"
                         android:text="@string/cancer"
                         app:layout_constraintTop_toBottomOf="@id/basicRegister_cbHeartDisease" />
 
@@ -230,13 +232,16 @@
                         android:id="@+id/basicRegister_cbHypertension"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="@{viewModel.isHighBloodPressure}"
                         android:text="@string/hypertension"
+
                         app:layout_constraintTop_toBottomOf="@id/basicRegister_cbCancer" />
 
                     <CheckBox
                         android:id="@+id/basicRegister_cbDiabetes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="@{viewModel.isDiabetes}"
                         android:text="@string/diabetes"
                         app:layout_constraintTop_toBottomOf="@id/basicRegister_cbHypertension" />
 
@@ -244,6 +249,7 @@
                         android:id="@+id/basicRegister_cbArthritis"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="@{viewModel.isArthritis}"
                         android:text="@string/arthritis"
                         app:layout_constraintTop_toBottomOf="@id/basicRegister_cbDiabetes" />
 
@@ -251,6 +257,7 @@
                         android:id="@+id/basicRegister_cbDementia"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="@{viewModel.isDementia}"
                         android:text="@string/dementia"
                         app:layout_constraintTop_toBottomOf="@id/basicRegister_cbArthritis" />
 
@@ -291,8 +298,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/privacyInfoManagement"
                             android:onClick="@{()->viewModel.onPrivacyTermClick()}"
+                            android:text="@string/privacyInfoManagement"
                             android:textColor="@color/main" />
 
                         <TextView
@@ -327,10 +334,10 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/main_dark"
+            android:onClick="@{()->viewModel.onRegisterClick()}"
             android:text="@string/join"
             android:textColor="@color/white"
             android:textSize="20dp"
-            android:onClick="@{()->viewModel.onRegisterClick()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />

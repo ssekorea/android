@@ -24,6 +24,12 @@ public class BasicRegisterViewModel extends BaseViewModel<BasicRegisterNavigator
     private ObservableField<String> birthday = new ObservableField<>();
     private ObservableField<String> phoneNumber = new ObservableField<>();
     private MutableLiveData<String> gender = new MutableLiveData<>();
+    private ObservableBoolean isHeartDisease = new ObservableBoolean();
+    private ObservableBoolean isCancer = new ObservableBoolean();
+    private ObservableBoolean isHighBloodPressure= new ObservableBoolean();
+    private ObservableBoolean isDiabetes= new ObservableBoolean();
+    private ObservableBoolean isArthritis= new ObservableBoolean();
+    private ObservableBoolean isDementia = new ObservableBoolean();
     private ObservableBoolean isPhoneAuthed = new ObservableBoolean(true);
     private ApiHelper apiHelper;
     private UserRepository userRepository;
@@ -79,6 +85,12 @@ public class BasicRegisterViewModel extends BaseViewModel<BasicRegisterNavigator
         registerUser.setBirthday(birthday.get());
         registerUser.setPhoneNumber(phoneNumber.get());
         registerUser.setGender(gender.getValue());
+        if(isHeartDisease.get()) registerUser.setHeartDisease(1);
+        if(isCancer.get())registerUser.setCancer(1);
+        if (isHighBloodPressure.get())registerUser.setHighBloodPressure(1);
+        if (isDiabetes.get())registerUser.setDiabetes(1);
+        if(isArthritis.get())registerUser.setArthritis(1);
+        if(isDementia.get())registerUser.setDementia(1);
         setIsLoading(true);
         getCompositeDisposable().add(apiHelper.registerWithBasic(new RegisterRequest.BasicRegisterRequest(registerUser))
                 .subscribeOn(getSchedulerProvider().io())
@@ -108,7 +120,6 @@ public class BasicRegisterViewModel extends BaseViewModel<BasicRegisterNavigator
     }
 
     public void onServiceTermClick() {
-        // todo navigate Term webview with url
         getNavigator().popupWebView("서비스 이용약관","http://165.194.104.92:4401/service_term.html");
     }
 
@@ -147,5 +158,29 @@ public class BasicRegisterViewModel extends BaseViewModel<BasicRegisterNavigator
 
     public ObservableField<String> getId() {
         return id;
+    }
+
+    public ObservableBoolean getIsHeartDisease() {
+        return isHeartDisease;
+    }
+
+    public ObservableBoolean getIsCancer() {
+        return isCancer;
+    }
+
+    public ObservableBoolean getIsHighBloodPressure() {
+        return isHighBloodPressure;
+    }
+
+    public ObservableBoolean getIsDiabetes() {
+        return isDiabetes;
+    }
+
+    public ObservableBoolean getIsArthritis() {
+        return isArthritis;
+    }
+
+    public ObservableBoolean getIsDementia() {
+        return isDementia;
     }
 }

@@ -6,8 +6,11 @@ import android.support.v4.app.Fragment;
 
 import com.ssekorea.sse.sseproject.base.BaseFragment;
 import com.ssekorea.sse.sseproject.base.BaseViewModel;
+import com.ssekorea.sse.sseproject.main.etc.EtcFragment;
 import com.ssekorea.sse.sseproject.main.home.HomeFragment;
 import com.ssekorea.sse.sseproject.main.lecture.LectureFragment;
+import com.ssekorea.sse.sseproject.main.myinfo.MyInfoFragment;
+import com.ssekorea.sse.sseproject.main.shop.ShopFragment;
 import com.ssekorea.sse.sseproject.util.rx.SchedulerProvider;
 
 public class MainViewModel extends BaseViewModel {
@@ -15,12 +18,18 @@ public class MainViewModel extends BaseViewModel {
     private MutableLiveData<Fragment> selectedFragment = new MutableLiveData<>();
     private HomeFragment homeFragment;
     private LectureFragment lectureFragment;
+    private ShopFragment shopFragment;
+    private MyInfoFragment myInfoFragment;
+    private EtcFragment etcFragment;
 
     public MainViewModel(SchedulerProvider mSchedulerProvider) {
         super(mSchedulerProvider);
         title = new ObservableField<>();
         homeFragment = new HomeFragment();
         lectureFragment = LectureFragment.newInstance();
+        shopFragment = ShopFragment.newInstance();
+        myInfoFragment = new MyInfoFragment();
+        etcFragment = new EtcFragment();
         selectedFragment.setValue(homeFragment);
     }
 
@@ -37,14 +46,14 @@ public class MainViewModel extends BaseViewModel {
     }
 
     public void onShopClick() {
-
+        selectedFragment.setValue(shopFragment);
     }
 
     public void onMyInfoClick() {
-
+        selectedFragment.setValue(myInfoFragment);
     }
 
     public void onEtcClick() {
-
+        selectedFragment.setValue(etcFragment);
     }
 }
