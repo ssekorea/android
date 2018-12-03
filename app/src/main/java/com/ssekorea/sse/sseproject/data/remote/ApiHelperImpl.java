@@ -76,7 +76,25 @@ public class ApiHelperImpl implements ApiHelper {
     @Override
     public Single<RegisterResponse> registerWithBasic(RegisterRequest.BasicRegisterRequest request) {
         return Rx2AndroidNetworking.post(ApiEndpoint.ENDPOINT_REGISTER_BASIC)
-                .addApplicationJsonBody(request.getUser())
+                .addApplicationJsonBody(request)
+                .build()
+                .getObjectSingle(RegisterResponse.class);
+    }
+
+
+    @Override
+    public Single<RegisterResponse> registerWithFacebook(RegisterRequest.FacebookRegisterRequest request) {
+        return Rx2AndroidNetworking.post(ApiEndpoint.ENDPOINT_REGISTER_FACEBOOK)
+                .addApplicationJsonBody(request)
+                .build()
+                .getObjectSingle(RegisterResponse.class);
+    }
+
+
+    @Override
+    public Single<RegisterResponse> registerWithKakao(RegisterRequest.KakaokRegisterRequest request) {
+        return Rx2AndroidNetworking.post(ApiEndpoint.ENDPOINT_REGISTER_KAKAO)
+                .addApplicationJsonBody(request)
                 .build()
                 .getObjectSingle(RegisterResponse.class);
     }

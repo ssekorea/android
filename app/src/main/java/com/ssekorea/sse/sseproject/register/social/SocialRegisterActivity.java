@@ -23,6 +23,7 @@ public class SocialRegisterActivity extends BaseActivity<ActivitySocialRegisterB
         return BR.viewModel;
     }
 
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_social_register;

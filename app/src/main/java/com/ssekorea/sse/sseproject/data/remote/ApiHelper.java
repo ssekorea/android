@@ -20,6 +20,10 @@ public interface ApiHelper {
 
     Single<RegisterResponse> registerWithBasic(RegisterRequest.BasicRegisterRequest request);
 
+    Single<RegisterResponse> registerWithFacebook(RegisterRequest.FacebookRegisterRequest request);
+
+    Single<RegisterResponse> registerWithKakao(RegisterRequest.KakaokRegisterRequest request);
+
     Single<LectureResponse.GetLectureLists> getLectures();
 
     Single<ShopResponse.GetShopList> getShopItems();

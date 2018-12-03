@@ -2,6 +2,7 @@ package com.ssekorea.sse.sseproject.login;
 
 import android.util.Log;
 
+import com.bumptech.glide.load.HttpException;
 import com.facebook.AccessToken;
 import com.kakao.usermgmt.response.model.UserProfile;
 import com.ssekorea.sse.sseproject.base.BaseViewModel;
@@ -29,6 +30,8 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
     public void tryLoginWithFacebook(JSONObject fbJsonData) {
         String id;
         String token = AccessToken.getCurrentAccessToken().getToken();
+        String firstName = "";
+        String lastName = "";
         if (token == null || token.equals("")) {
             getUiHandleError().setValue(new Throwable("페이스북 로그인 오류. 다른 방법을 이용해 주세요"));
             Log.e("LoginViewModel", "statusCode while get current token in tryLoginWithFacebook");
@@ -42,33 +45,46 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
             Log.e("LoginViewModel", "statusCode while get facebook Id in tryLoginWithFacebook");
             return;
         }
-        Log.e("LoginViewModel",fbJsonData.toString());
+        try {
+            firstName = fbJsonData.getString("first_name");
+        } catch (JSONException e) {
+
+        }
+        try {
+            lastName = fbJsonData.getString("last_name");
+        } catch (JSONException e) {
+
+        }
+        Log.e("LoginViewModel", fbJsonData.toString());
+        String finalFirstName = firstName;
+        String finalLastName = lastName;
         getCompositeDisposable().add(apiHelper.loginWithFacebook(new LoginRequest.FacebookLoginRequest(id, token))
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(
                         loginResponse -> {
-                            switch (loginResponse.statusCode) {
-                                case ResponseStatus.CODE_SUCCESS:
-                                    userRepository.setUser(loginResponse.userInfoDTO);
-                                    Log.e("와우","잘됨");
-                                    Log.e("와우",loginResponse.userInfoDTO.toString());
-                                    //todo navigate to main
-                                    break;
-                                case ResponseStatus.CODE_INVALID_USER:
+                            userRepository.setUser(loginResponse.userInfoDTO);
+                            Log.e("와우", "잘됨");
+                            Log.e("와우", loginResponse.userInfoDTO.toString());
+                            getNavigator().navigateToMain();
+
+                        }, throwable -> {
+                            HttpException exception = (HttpException) throwable;
+                            switch (exception.getStatusCode()) {
+                                case 400:
                                     User user = new User();
-                                    user.setId(id);
+                                    user.setId(String.valueOf(id));
                                     user.setAccessToken(token);
-                                    user.setName(fbJsonData.getString("name"));
+                                    user.setName(finalFirstName + finalLastName);
                                     userRepository.setUser(user);
-                                    //todo navigate to register_for_social
-                                    break;
+                                    getUiHandleError().setValue(throwable);
+                                    getNavigator().navigateToRegisterSocial();
                                 default:
-                                    getUiHandleError().setValue(new Throwable("요청오류 . ERROR CODE : " + loginResponse.statusCode));
-                                    Log.e("LoginViewModel", "invalid response code " + loginResponse.statusCode);
+                                    getUiHandleError().setValue(new Throwable("요청오류 . ERROR CODE : " + exception.getStatusCode()));
+                                    Log.e("LoginViewModel", "invalid response code " + exception.getStatusCode());
                                     break;
                             }
-                        }, throwable -> getUiHandleError().setValue(throwable)));
+                        }));
     }
 
     public void tryLoginWithBasic(String id, String pw) {
@@ -85,8 +101,8 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
                     switch (response.statusCode) {
                         case ResponseStatus.CODE_SUCCESS:
                             userRepository.setUser(response.userInfoDTO);
-                            Log.e("와우","잘됨");
-                            Log.e("와우",response.userInfoDTO.toString());
+                            Log.e("와우", "잘됨");
+                            Log.e("와우", response.userInfoDTO.toString());
                             getNavigator().navigateToBasicRegister();
                             break;
                         case ResponseStatus.CODE_INVALID_USER:
@@ -108,37 +124,37 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
                 }));
     }
 
-    public void tryLoginWithKakao(UserProfile userProfile,String accessToken) {
+    public void tryLoginWithKakao(UserProfile userProfile, String accessToken) {
         Log.d("LoginModel", "tryLoginWithKakao: " + userProfile.getId() + "," + userProfile.getNickname());
         getCompositeDisposable().add(apiHelper.loginWithKakao(new LoginRequest.KakaoLoginRequest(String.valueOf(userProfile.getId()), accessToken))
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(
                         loginResponse -> {
-                            switch (loginResponse.statusCode) {
-                                case ResponseStatus.CODE_SUCCESS:
-                                    userRepository.setUser(loginResponse.userInfoDTO);
-                                    //todo navigate to main
-                                    break;
-                                case ResponseStatus.CODE_INVALID_USER:
+                            userRepository.setUser(loginResponse.userInfoDTO);
+                            getNavigator().navigateToMain();
+                        },
+                        throwable -> {
+                            HttpException exception = (HttpException) throwable;
+                            switch (exception.getStatusCode()) {
+                                case 400:
                                     User user = new User();
                                     user.setId(String.valueOf(userProfile.getId()));
                                     user.setAccessToken(accessToken);
                                     user.setName(userProfile.getNickname());
                                     userRepository.setUser(user);
-                                    //todo navigate to register_for_social
-                                    break;
+                                    getUiHandleError().setValue(throwable);
+                                    getNavigator().navigateToRegisterSocial();
                                 default:
-                                    getUiHandleError().setValue(new Throwable("요청오류 . ERROR CODE : " + loginResponse.statusCode));
-                                    Log.e("LoginViewModel", "invalid response code " + loginResponse.statusCode);
+                                    getUiHandleError().setValue(new Throwable("요청오류 . ERROR CODE : " + exception.getStatusCode()));
+                                    Log.e("LoginViewModel", "invalid response code " + exception.getStatusCode());
                                     break;
                             }
-                        },
-                        throwable ->getUiHandleError().setValue(throwable)
+                        }
                 ));
     }
 
-    public void onRegisterClick(){
+    public void onRegisterClick() {
         getNavigator().navigateToBasicRegister();
     }
 }
