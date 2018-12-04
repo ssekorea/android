@@ -4,7 +4,8 @@ import java.util.List;
 
 public class Product {
     private String productId;
-    private List<String> imgs;
+
+    private List<String> productImageUrls;
 
     public String getProductId() {
         return productId;
@@ -14,11 +15,11 @@ public class Product {
         this.productId = productId;
     }
 
-    public List<String> getImgs() {
-        return imgs;
+    public List<String> getProductImageUrls() {
+        return productImageUrls;
     }
 
-    public void setImgs(List<String> imgs) {
-        this.imgs = imgs;
+    public void setProductImageUrls(List<String> productImageUrls) {
+        this.productImageUrls = productImageUrls;
     }
 }

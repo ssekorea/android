@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.bumptech.glide.Glide;
 import com.ssekorea.sse.sseproject.base.BaseViewHolder;
 import com.ssekorea.sse.sseproject.common.GlideApp;
 import com.ssekorea.sse.sseproject.databinding.ItemShopViewBinding;
@@ -66,9 +65,9 @@ public class ShopAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             shopItemViewModel = new ShopItemViewModel(shopItem, this);
             binding.setViewModel(shopItemViewModel);
             binding.executePendingBindings();
-            if (shopItem.getImgs().size()>0) {
+            if (shopItem.getProductImageUrls().size()>0) {
                 GlideApp.with(binding.imgShopItem)
-                        .load(shopItem.getImgs().get(0))
+                        .load(shopItem.getProductImageUrls().get(0))
                         .centerCrop()
                         .into(binding.imgShopItem);
             }

@@ -27,8 +27,8 @@ public class ShopViewModel extends BaseViewModel<ShopNavigator> {
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(response -> {
                     setIsLoading(false);
-                    if (response.productDTO != null)
-                        getShopItemsLiveData().setValue(response.productDTO);
+                    if (response.productList != null)
+                        getShopItemsLiveData().setValue(response.productList);
                 }, throwable -> {
                     setIsLoading(false);
                     getUiHandleError().setValue(throwable);

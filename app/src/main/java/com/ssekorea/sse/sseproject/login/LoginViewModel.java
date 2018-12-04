@@ -28,6 +28,7 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
     }
 
     public void tryLoginWithFacebook(JSONObject fbJsonData) {
+        setIsLoading(true);
         String id;
         String token = AccessToken.getCurrentAccessToken().getToken();
         String firstName = "";
@@ -63,12 +64,14 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(
                         loginResponse -> {
+                            setIsLoading(false);
                             userRepository.setUser(loginResponse.userInfoDTO);
                             Log.e("와우", "잘됨");
                             Log.e("와우", loginResponse.userInfoDTO.toString());
                             getNavigator().navigateToMain();
 
                         }, throwable -> {
+                            setIsLoading(false);
                             HttpException exception = (HttpException) throwable;
                             switch (exception.getStatusCode()) {
                                 case 400:
@@ -98,13 +101,17 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
                 })
                 .subscribe(response -> {
                     setIsLoading(false);
-                    switch (response.statusCode) {
-                        case ResponseStatus.CODE_SUCCESS:
-                            userRepository.setUser(response.userInfoDTO);
-                            Log.e("와우", "잘됨");
-                            Log.e("와우", response.userInfoDTO.toString());
-                            getNavigator().navigateToBasicRegister();
-                            break;
+                    userRepository.setUser(response.userInfoDTO);
+                    Log.e("와우", "잘됨");
+                    Log.e("와우", response.userInfoDTO.toString());
+                    getNavigator().navigateToMain();
+
+                }, error -> {
+                    setIsLoading(false);
+                    getUiHandleError().setValue(error);
+                    HttpException exception = (HttpException) error;
+                    switch (String.valueOf(exception.getStatusCode())) {
+
                         case ResponseStatus.CODE_INVALID_USER:
                             getUiHandleError().setValue(new Throwable("존재하지 않는 유저입니다."));
                             Log.e("LoginViewModel", "invalid userInfoDTO , " + id + pw);
@@ -114,27 +121,27 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
                             Log.e("LoginViewModel", "invalid request, " + id + pw);
                             break;
                         default:
-                            getUiHandleError().setValue(new Throwable("요청오류 . ERROR CODE : " + response.statusCode));
-                            Log.e("LoginViewModel", "invalid response code " + response.statusCode);
+                            getUiHandleError().setValue(new Throwable("요청오류 . ERROR CODE : " + exception.getStatusCode()));
+                            Log.e("LoginViewModel", "invalid response code " + exception.getStatusCode());
                             break;
                     }
-                }, error -> {
-                    setIsLoading(false);
-                    getUiHandleError().setValue(error);
                 }));
     }
 
     public void tryLoginWithKakao(UserProfile userProfile, String accessToken) {
+        setIsLoading(true);
         Log.d("LoginModel", "tryLoginWithKakao: " + userProfile.getId() + "," + userProfile.getNickname());
         getCompositeDisposable().add(apiHelper.loginWithKakao(new LoginRequest.KakaoLoginRequest(String.valueOf(userProfile.getId()), accessToken))
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(
                         loginResponse -> {
+                            setIsLoading(false);
                             userRepository.setUser(loginResponse.userInfoDTO);
                             getNavigator().navigateToMain();
                         },
                         throwable -> {
+                            setIsLoading(false);
                             HttpException exception = (HttpException) throwable;
                             switch (exception.getStatusCode()) {
                                 case 400:

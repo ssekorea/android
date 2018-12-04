@@ -7,6 +7,6 @@ import java.util.List;
 public class ShopResponse {
     public String statusCode;
     public class GetShopList extends ShopResponse{
-        public List<Product> productDTO;
+        public List<Product> productList;
     }
 }
