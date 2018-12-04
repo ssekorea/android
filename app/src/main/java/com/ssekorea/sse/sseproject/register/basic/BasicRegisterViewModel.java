@@ -7,6 +7,7 @@ import android.databinding.ObservableField;
 import android.util.Log;
 
 import com.ssekorea.sse.sseproject.base.BaseViewModel;
+import com.ssekorea.sse.sseproject.common.Config;
 import com.ssekorea.sse.sseproject.data.remote.ApiHelper;
 import com.ssekorea.sse.sseproject.data.remote.model.RegisterRequest;
 import com.ssekorea.sse.sseproject.data.remote.model.ResponseStatus;
@@ -120,12 +121,12 @@ public class BasicRegisterViewModel extends BaseViewModel<BasicRegisterNavigator
     }
 
     public void onServiceTermClick() {
-        getNavigator().popupWebView("서비스 이용약관","http://165.194.104.92:4401/service_term.html");
+        getNavigator().popupWebView("서비스 이용약관",Config.SERVICE_TERM_URL);
     }
 
     public void onPrivacyTermClick() {
         // todo navigate Term webview with url
-        getNavigator().popupWebView("개인정보 이용약관","http://165.194.104.92:4401/privacy_term.html");
+        getNavigator().popupWebView("개인정보 이용약관",Config.PRIVACY_TERM_URL);
     }
 
     public ObservableField<String> getPw() {

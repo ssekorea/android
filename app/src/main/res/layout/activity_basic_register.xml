@@ -165,7 +165,7 @@
 
                 <com.rengwuxian.materialedittext.MaterialEditText
                     android:id="@+id/basicRegister_edtPhoneNumber"
-                    android:layout_width="180dp"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:hint="@string/phone_number"
@@ -179,6 +179,7 @@
                     app:met_primaryColor="@color/main" />
 
                 <Button
+                    android:visibility="gone"
                     android:id="@+id/basicRegister_btnAuth"
                     android:layout_width="80dp"
                     android:layout_height="40dp"

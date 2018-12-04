@@ -50,88 +50,196 @@
 
         </android.support.constraint.ConstraintLayout>
 
-
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/edtPhoneNumber"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:hint="@string/phone_number"
-            android:inputType="number"
-            android:text="@={viewModel.phoneNumber}"
-            android:textColor="@color/black"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/btnAuth"
-            app:layout_constraintTop_toBottomOf="@id/topMenu"
-            app:met_helperText="-제외 숫자만 입력"
-            app:met_primaryColor="@color/main" />
-
-        <Button
-            android:id="@+id/btnAuth"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:background="@drawable/round_rect_gray"
-            android:onClick="@{()->viewModel.onAuthPhoneClick()}"
-            android:text="@string/doAuth"
-            app:layout_constraintBottom_toBottomOf="@id/edtPhoneNumber"
-            app:layout_constraintLeft_toRightOf="@id/edtPhoneNumber"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/edtPhoneNumber"
-
-
-            />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingBottom="40dp"
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/register"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/register">
+            app:layout_constraintTop_toBottomOf="@id/topMenu">
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/edtPhoneNumber"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/phone_number"
+                    android:inputType="number"
+                    android:text="@={viewModel.phoneNumber}"
+                    android:textColor="@color/black"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/btnAuth"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="50dp"
+                    app:met_helperText="-제외 숫자만 입력"
+                    app:met_primaryColor="@color/main" />
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/edtBirthday"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/birthday"
+                    android:inputType="number"
+                    android:text="@={viewModel.birthday}"
+                    android:textColor="@color/black"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/edtPhoneNumber"
+                    app:met_floatingLabel="highlight"
+                    app:met_helperText="ex)19960407"
+                    app:met_maxCharacters="8"
+                    app:met_primaryColor="@color/main" />
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/diseaseWrapper"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/edtBirthday">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="가입하기 버튼을 누르면 본 서비스의 "
-                android:textColor="@color/black" />
+                    <TextView
+                        android:id="@+id/basicRegister_tvDisease"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/disease_check_explain"
+                        android:textColor="@color/black"
+                        android:textSize="13dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                    <CheckBox
+                        android:id="@+id/basicRegister_cbHeartDisease"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:checked="@{viewModel.isHeartDisease}"
+                        android:text="@string/heartDisease"
+                        app:layout_constraintTop_toBottomOf="@id/basicRegister_tvDisease" />
 
-                <TextView
+                    <CheckBox
+                        android:id="@+id/basicRegister_cbCancer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="@{viewModel.isCancer}"
+                        android:text="@string/cancer"
+                        app:layout_constraintTop_toBottomOf="@id/basicRegister_cbHeartDisease" />
+
+                    <CheckBox
+                        android:id="@+id/basicRegister_cbHypertension"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="@{viewModel.isHighBloodPressure}"
+                        android:text="@string/hypertension"
+
+                        app:layout_constraintTop_toBottomOf="@id/basicRegister_cbCancer" />
+
+                    <CheckBox
+                        android:id="@+id/basicRegister_cbDiabetes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="@{viewModel.isDiabetes}"
+                        android:text="@string/diabetes"
+                        app:layout_constraintTop_toBottomOf="@id/basicRegister_cbHypertension" />
+
+                    <CheckBox
+                        android:id="@+id/basicRegister_cbArthritis"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="@{viewModel.isArthritis}"
+                        android:text="@string/arthritis"
+                        app:layout_constraintTop_toBottomOf="@id/basicRegister_cbDiabetes" />
+
+                    <CheckBox
+                        android:id="@+id/basicRegister_cbDementia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="@{viewModel.isDementia}"
+                        android:text="@string/dementia"
+                        app:layout_constraintTop_toBottomOf="@id/basicRegister_cbArthritis" />
+
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:id="@+id/basicRegister_edtEtcDisease"
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/etc"
+                        android:inputType="text"
+                        android:textColor="@color/black"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/basicRegister_cbDementia"
+                        app:met_primaryColor="@color/main" />
+                </android.support.constraint.ConstraintLayout>
+
+                <Button
+                    android:id="@+id/btnAuth"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:visibility="gone"
+                    android:background="@drawable/round_rect_gray"
+                    android:onClick="@{()->viewModel.onAuthPhoneClick()}"
+                    android:text="@string/doAuth"
+                    app:layout_constraintBottom_toBottomOf="@id/edtPhoneNumber"
+                    app:layout_constraintLeft_toRightOf="@id/edtPhoneNumber"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/edtPhoneNumber"
+
+
+                    />
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/privacyInfoManagement"
-                    android:onClick="@{()->viewModel.onPrivacyTermClick()}"
-                    android:textColor="@color/main" />
+                    android:layout_marginTop="25dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingBottom="40dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/diseaseWrapper">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" 과 "
-                    android:textColor="@color/black" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="가입하기 버튼을 누르면 본 서비스의 "
+                        android:textColor="@color/black" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="@{()->viewModel.onServiceTermClick()}"
-                    android:text="@string/termOfService"
-                    android:textColor="@color/main" />
-            </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text=" 에 동의한 것으로 간주합니다."
-                android:textColor="@color/black" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/privacyInfoManagement"
+                            android:onClick="@{()->viewModel.onPrivacyTermClick()}"
+                            android:textColor="@color/main" />
 
-        </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" 과 "
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{()->viewModel.onServiceTermClick()}"
+                            android:text="@string/termOfService"
+                            android:textColor="@color/main" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text=" 에 동의한 것으로 간주합니다."
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+            </android.support.constraint.ConstraintLayout>
+
+        </ScrollView>
+
+
 
         <Button
             android:id="@+id/register"
