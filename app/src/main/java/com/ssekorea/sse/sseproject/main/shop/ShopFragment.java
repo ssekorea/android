@@ -61,6 +61,7 @@ public class ShopFragment extends BaseFragment<FragmentShopBinding,ShopViewModel
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         fragmentShopBinding = getViewDataBinding();
+        shopAdapter.setFragment(this);
         setUp();
         subscribeLiveData();
     }

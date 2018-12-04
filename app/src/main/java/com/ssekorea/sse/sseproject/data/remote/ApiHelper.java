@@ -1,5 +1,7 @@
 package com.ssekorea.sse.sseproject.data.remote;
 
+import com.ssekorea.sse.sseproject.data.remote.model.BuyRequest;
+import com.ssekorea.sse.sseproject.data.remote.model.CodeResponse;
 import com.ssekorea.sse.sseproject.data.remote.model.FeedResponse;
 import com.ssekorea.sse.sseproject.data.remote.model.LectureResponse;
 import com.ssekorea.sse.sseproject.data.remote.model.LoginRequest;
@@ -29,4 +31,6 @@ public interface ApiHelper {
     Single<ShopResponse.GetShopList> getShopItems();
 
     Single<FeedResponse.GetFeedList> getFeedList();
+
+    Single<CodeResponse> buyProduct(String userId, BuyRequest buyRequest);
 }

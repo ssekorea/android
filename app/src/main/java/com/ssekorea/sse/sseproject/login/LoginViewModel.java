@@ -2,6 +2,7 @@ package com.ssekorea.sse.sseproject.login;
 
 import android.util.Log;
 
+import com.androidnetworking.error.ANError;
 import com.bumptech.glide.load.HttpException;
 import com.facebook.AccessToken;
 import com.kakao.usermgmt.response.model.UserProfile;
@@ -108,10 +109,8 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
 
                 }, error -> {
                     setIsLoading(false);
-                    getUiHandleError().setValue(error);
-                    HttpException exception = (HttpException) error;
-                    switch (String.valueOf(exception.getStatusCode())) {
-
+                    ANError exception = (ANError) error;
+                    switch (String.valueOf(exception.getErrorCode())) {
                         case ResponseStatus.CODE_INVALID_USER:
                             getUiHandleError().setValue(new Throwable("존재하지 않는 유저입니다."));
                             Log.e("LoginViewModel", "invalid userInfoDTO , " + id + pw);
@@ -121,8 +120,8 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
                             Log.e("LoginViewModel", "invalid request, " + id + pw);
                             break;
                         default:
-                            getUiHandleError().setValue(new Throwable("요청오류 . ERROR CODE : " + exception.getStatusCode()));
-                            Log.e("LoginViewModel", "invalid response code " + exception.getStatusCode());
+                            getUiHandleError().setValue(new Throwable("요청오류 . ERROR CODE : " + exception.getErrorCode()));
+                            Log.e("LoginViewModel", "invalid response code " + exception.getErrorCode());
                             break;
                     }
                 }));

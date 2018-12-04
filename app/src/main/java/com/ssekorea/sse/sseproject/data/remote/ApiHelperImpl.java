@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 
 import com.androidnetworking.AndroidNetworking;
 import com.ssekorea.sse.sseproject.SseApp;
+import com.ssekorea.sse.sseproject.data.remote.model.BuyRequest;
+import com.ssekorea.sse.sseproject.data.remote.model.CodeResponse;
 import com.ssekorea.sse.sseproject.data.remote.model.FeedResponse;
 import com.ssekorea.sse.sseproject.data.remote.model.LectureResponse;
 import com.ssekorea.sse.sseproject.data.remote.model.LoginRequest;
@@ -126,5 +128,15 @@ public class ApiHelperImpl implements ApiHelper {
                 .addHeaders("Authorization",userRepository.getUser().getAccessToken())
                 .build()
                 .getObjectSingle(FeedResponse.GetFeedList.class);
+    }
+
+    @Override
+    public Single<CodeResponse> buyProduct(String userId, BuyRequest buyRequest) {
+        return Rx2AndroidNetworking.post(ApiEndpoint.ENDPOINT_BUY)
+                .addPathParameter("userId",userId)
+                .addApplicationJsonBody(buyRequest)
+                .addHeaders("Authorization",userRepository.getUser().getAccessToken())
+                .build()
+                .getObjectSingle(CodeResponse.class);
     }
 }

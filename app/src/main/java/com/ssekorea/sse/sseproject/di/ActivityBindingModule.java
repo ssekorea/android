@@ -8,6 +8,7 @@ import com.ssekorea.sse.sseproject.main.lecture.LectureFragmentProvider;
 import com.ssekorea.sse.sseproject.main.MainActivity;
 import com.ssekorea.sse.sseproject.main.MainActivityModule;
 import com.ssekorea.sse.sseproject.main.shop.ShopFragmentProvider;
+import com.ssekorea.sse.sseproject.main.feed.FeedFragmentProvider;
 import com.ssekorea.sse.sseproject.main.shop.detail.ShopDetailActivity;
 import com.ssekorea.sse.sseproject.main.shop.detail.ShopDetailActivityModule;
 import com.ssekorea.sse.sseproject.register.basic.BasicRegisterActivity;
@@ -23,6 +24,7 @@ public abstract class ActivityBindingModule {
     //@ActivityScope  // Scope
     @ContributesAndroidInjector(modules = {
             MainActivityModule.class,
+            FeedFragmentProvider.class,
             LectureFragmentProvider.class,
             ShopFragmentProvider.class,
     })

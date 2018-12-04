@@ -64,6 +64,7 @@
                     android:layout_marginTop="5dp"
                     android:textColor="@color/black"
                     android:textSize="15dp"
+                    android:text="@{viewModel.cost}"
                     app:layout_constraintLeft_toLeftOf="@id/tv_title"
                     app:layout_constraintTop_toBottomOf="@id/tv_title"
                     tools:text="100,000원 / 개" />
@@ -80,6 +81,7 @@
                     app:layout_constraintRight_toLeftOf="@id/btn_more"
                     android:maxLines="2"
                     android:ellipsize="end"
+                    android:text="@{viewModel.description}"
                     tools:text="상품상세설명이 여기에 들어갑니다. 만약에 두줄이 넘어가서 짤릴경우 ...으로 나타" />
 
                 <Button

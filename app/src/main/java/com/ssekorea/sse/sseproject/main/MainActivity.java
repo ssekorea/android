@@ -10,10 +10,9 @@ import com.ssekorea.sse.sseproject.R;
 
 import com.ssekorea.sse.sseproject.BR;
 import com.ssekorea.sse.sseproject.base.BaseActivity;
-import com.ssekorea.sse.sseproject.base.BaseViewModel;
 import com.ssekorea.sse.sseproject.databinding.ActivityMainBinding;
 import com.ssekorea.sse.sseproject.main.etc.EtcFragment;
-import com.ssekorea.sse.sseproject.main.home.HomeFragment;
+import com.ssekorea.sse.sseproject.main.feed.FeedFragment;
 import com.ssekorea.sse.sseproject.main.lecture.LectureFragment;
 import com.ssekorea.sse.sseproject.main.myinfo.MyInfoFragment;
 import com.ssekorea.sse.sseproject.main.shop.ShopFragment;
@@ -64,7 +63,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding,MainViewModel
                 transaction.replace(R.id.fragment_place, fragment);
                 transaction.commit();
             }
-            if(fragment instanceof HomeFragment)
+            if(fragment instanceof FeedFragment)
                 setButtonDisabled(findViewById(R.id.btn_home));
             if(fragment instanceof LectureFragment)
                 setButtonDisabled(findViewById(R.id.btn_lecture));

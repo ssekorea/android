@@ -11,9 +11,9 @@ public class ShopItemViewModel {
 
     public ShopItemViewModel(Product product, ShopItemViewModelListener listener) {
         this.product = product;
-        this.title = new ObservableField<>();
-        this.description = new ObservableField<>();
-        this.cost = new ObservableField<>();
+        this.title = new ObservableField<>(product.getName());
+        this.description = new ObservableField<>(product.getExplanation());
+        this.cost = new ObservableField<>(product.getPrice()+"원 / 개");
         this.listener = listener;
     }
 

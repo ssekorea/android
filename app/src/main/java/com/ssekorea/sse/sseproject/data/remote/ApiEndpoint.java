@@ -10,6 +10,7 @@ public class ApiEndpoint {
     public static final String ENDPOINT_LOGIN_FACEBOOK = Config.BASE_URL+"/oauth/third_party"; 
     public static final String ENDPOINT_LOGIN_KAKAO = Config.BASE_URL+"/oauth/third_party"; 
     public static final String ENDPOINT_LECTURE = Config.BASE_URL + "/lectures";
+    public static final String ENDPOINT_BUY = Config.BASE_URL + "/users/{userId}/orders";
     public static final String ENDPOINT_SHOP = Config.BASE_URL + "/products";
     public static final String ENDPOINT_FEED = Config.BASE_URL + "/feeds";
     public static final String ENDPOINT_COURSE = Config.BASE_URL + "/courses";
@@ -17,4 +18,5 @@ public class ApiEndpoint {
     private ApiEndpoint(){
         // 객체 금지
     }
+
 }

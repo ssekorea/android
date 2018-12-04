@@ -5,7 +5,7 @@ import java.util.List;
 public class Feed {
     private int id;
     private String title;
-    private String contetns;
+    private String contents;
     private String registerDate;
     private List<String> feedImageUrls;
 
@@ -25,12 +25,12 @@ public class Feed {
         this.title = title;
     }
 
-    public String getContetns() {
-        return contetns;
+    public String getContents() {
+        return contents;
     }
 
-    public void setContetns(String contetns) {
-        this.contetns = contetns;
+    public void setContents(String contents) {
+        this.contents = contents;
     }
 
     public String getRegisterDate() {

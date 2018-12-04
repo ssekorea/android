@@ -71,7 +71,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
         super.onCreate(savedInstanceState);
         mActivityLoginBinding = getViewDataBinding();
         mLoginViewModel.setNavigator(this);
-        mLoginViewModel.getUiHandleError().observe(this,throwable -> UIUtil.showToast(throwable != null ? throwable.toString() : "null message"));
+        mLoginViewModel.getUiHandleError().observe(this,throwable -> UIUtil.showToast(throwable != null ? throwable.getMessage() : "null message"));
         mActivityLoginBinding.loginBtnFacebook.setOnClickListener((v) -> {
             loginManager.logInWithReadPermissions(LoginActivity.this, Arrays.asList("public_profile", "email"));
             loginManager.registerCallback(fbCallbackManager, fbLoginCallback);

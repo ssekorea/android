@@ -36,6 +36,7 @@
                 android:id="@+id/tv_titleProductName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@{viewModel.productName}"
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="bold"
@@ -61,10 +62,12 @@
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
 
                 <ImageView
-                    android:id="@+id/main_img"
+                    android:id="@+id/img_main"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:layout_marginLeft="20dp"
@@ -79,11 +82,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="5dp"
+                    android:text="@{viewModel.productName}"
                     android:textColor="@color/black"
                     android:textSize="32dp"
                     android:textStyle="bold"
-                    app:layout_constraintLeft_toRightOf="@+id/main_img"
-                    app:layout_constraintTop_toTopOf="@+id/main_img"
+                    app:layout_constraintLeft_toRightOf="@+id/img_main"
+                    app:layout_constraintTop_toTopOf="@+id/img_main"
                     tools:text="요가매트" />
 
                 <TextView
@@ -91,6 +95,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:text="@{viewModel.cost}"
                     android:textColor="@color/black"
                     android:textSize="18dp"
                     app:layout_constraintLeft_toLeftOf="@+id/tv_productName"
@@ -104,15 +109,16 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
+                    android:text="@{viewModel.desc}"
                     android:textColor="@color/black"
                     android:textSize="16dp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/main_img"
+                    app:layout_constraintTop_toBottomOf="@+id/img_main"
                     tools:text="테스트 입니다. 이게 라인이 몇까지 가는지 궁금해서 쭉쳐보는데 할말 이 별로 없네요.." />
 
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/img_pager"
+                <ImageView
+                    android:id="@+id/img_mainBig"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginLeft="30dp"
@@ -124,6 +130,32 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_productDescription"
                     tools:background="@color/main_gray" />
 
+                <ImageView
+                    android:id="@+id/img_small1"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="10dp"
+                    app:layout_constraintDimensionRatio="h,1:1"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/img_small2"
+                    app:layout_constraintTop_toBottomOf="@id/img_mainBig"
+                    tools:background="@color/red_dark" />
+
+                <ImageView
+                    android:id="@+id/img_small2"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="30dp"
+                    app:layout_constraintDimensionRatio="h,1:1"
+                    app:layout_constraintLeft_toRightOf="@id/img_small1"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/img_mainBig"
+                    tools:background="@color/main" />
+
                 <com.rengwuxian.materialedittext.MaterialEditText
                     android:id="@+id/edt_peopleName"
                     android:layout_width="0dp"
@@ -133,9 +165,26 @@
                     android:layout_marginRight="20dp"
                     android:hint="수령인"
                     android:inputType="text"
+                    android:text="@={viewModel.recipientName}"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/img_pager"
+                    app:layout_constraintTop_toBottomOf="@id/img_small1"
+                    app:met_floatingLabel="highlight"
+                    app:met_primaryColor="@color/main" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/edt_phoneNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:hint="수령인 휴대폰번호"
+                    android:inputType="text"
+                    android:text="@={viewModel.recipientPhone}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/edt_peopleName"
                     app:met_floatingLabel="highlight"
                     app:met_primaryColor="@color/main" />
 
@@ -148,9 +197,10 @@
                     android:layout_marginRight="20dp"
                     android:hint="수령주소"
                     android:inputType="text"
+                    android:text="@={viewModel.address}"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/edt_peopleName"
+                    app:layout_constraintTop_toBottomOf="@id/edt_phoneNumber"
                     app:met_floatingLabel="highlight"
                     app:met_primaryColor="@color/main" />
 
@@ -170,36 +220,23 @@
                         android:textColor="@color/black"
                         android:textSize="24dp" />
 
-                    <Button
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/round_rect_gray"
-                        android:gravity="center"
-                        android:text="+"
-                        android:textSize="24dp" />
-
                     <EditText
                         android:layout_width="70dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
                         android:gravity="center"
+                        android:inputType="number"
+                        android:onTextChanged="@{viewModel.onTextChanged}"
+                        android:text="@={viewModel.count}"
                         tools:text="2" />
 
-                    <Button
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/round_rect_gray"
-                        android:gravity="center"
-                        android:text="-"
-                        android:textSize="24dp" />
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/tv_totalCostInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@{viewModel.totalCost}"
                     android:textColor="@color/black"
                     android:textSize="18dp"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -213,6 +250,7 @@
                     android:layout_height="50dp"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/selector_gender_button"
+                    android:onClick="@{()->viewModel.onBankClick()}"
                     android:text="무통장 입금"
                     android:textColor="@drawable/selector_gender_button"
                     android:textSize="16dp"
@@ -228,6 +266,7 @@
                     android:layout_height="50dp"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/selector_gender_button"
+                    android:onClick="@{()->viewModel.onCardClick()}"
                     android:text="카드 결제"
                     android:textColor="@drawable/selector_gender_button"
                     android:textSize="16dp"
@@ -236,18 +275,31 @@
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_totalCostInfo" />
 
+                <TextView
+                    android:id="@+id/tv_bankInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="예금주 : 웰니스 아이티\n 우리은행 1002-000-000000"
+                    android:textColor="@color/black"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btn_card" />
+
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="20dp"
                     android:background="@color/main_dark"
+                    android:onClick="@{()->viewModel.onBuyClick()}"
                     android:text="구매하기"
                     android:textColor="@color/white"
                     android:textSize="24dp"
                     android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/btn_bank" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_bankInfo" />
             </android.support.constraint.ConstraintLayout>
         </ScrollView>
 
